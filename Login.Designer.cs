@@ -30,14 +30,14 @@
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.accNumTb = new System.Windows.Forms.TextBox();
+            this.pinTb = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -62,6 +62,18 @@
             this.label1.Size = new System.Drawing.Size(403, 41);
             this.label1.TabIndex = 1;
             this.label1.Text = "ATM MANAGEMENT SYSTEM";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(764, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 41);
+            this.label6.TabIndex = 1;
+            this.label6.Text = "X";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label2
             // 
@@ -96,21 +108,22 @@
             this.label4.TabIndex = 1;
             this.label4.Text = "PIN CODE";
             // 
-            // textBox1
+            // accNumTb
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(370, 156);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(320, 38);
-            this.textBox1.TabIndex = 2;
+            this.accNumTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.accNumTb.Location = new System.Drawing.Point(370, 156);
+            this.accNumTb.Name = "accNumTb";
+            this.accNumTb.Size = new System.Drawing.Size(320, 38);
+            this.accNumTb.TabIndex = 2;
             // 
-            // textBox2
+            // pinTb
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(370, 232);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(320, 38);
-            this.textBox2.TabIndex = 2;
+            this.pinTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.pinTb.Location = new System.Drawing.Point(370, 232);
+            this.pinTb.Name = "pinTb";
+            this.pinTb.PasswordChar = '*';
+            this.pinTb.Size = new System.Drawing.Size(320, 38);
+            this.pinTb.TabIndex = 2;
             // 
             // button1
             // 
@@ -123,6 +136,7 @@
             this.button1.TabIndex = 3;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label5
             // 
@@ -134,17 +148,7 @@
             this.label5.Size = new System.Drawing.Size(87, 28);
             this.label5.TabIndex = 1;
             this.label5.Text = "SIGN UP";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(764, 0);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 41);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "X";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // Login
             // 
@@ -152,8 +156,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pinTb);
+            this.Controls.Add(this.accNumTb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
@@ -177,8 +181,8 @@
         private Label label2;
         private Label label3;
         private Label label4;
-        private TextBox textBox1;
-        private TextBox textBox2;
+        private TextBox accNumTb;
+        private TextBox pinTb;
         private Button button1;
         private Label label5;
         private Label label6;

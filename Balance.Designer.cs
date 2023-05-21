@@ -33,8 +33,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.accNumberLb = new System.Windows.Forms.Label();
+            this.balanceLb = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -61,6 +61,7 @@
             this.label2.Size = new System.Drawing.Size(44, 50);
             this.label2.TabIndex = 1;
             this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -95,38 +96,39 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "YOUR BALANCE:";
             // 
-            // label4
+            // accNumberLb
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label4.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label4.Location = new System.Drawing.Point(456, 114);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 28);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "AccNum";
+            this.accNumberLb.AutoSize = true;
+            this.accNumberLb.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.accNumberLb.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.accNumberLb.Location = new System.Drawing.Point(456, 114);
+            this.accNumberLb.Name = "accNumberLb";
+            this.accNumberLb.Size = new System.Drawing.Size(86, 28);
+            this.accNumberLb.TabIndex = 2;
+            this.accNumberLb.Text = "AccNum";
             // 
-            // label6
+            // balanceLb
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label6.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label6.Location = new System.Drawing.Point(456, 176);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(78, 28);
-            this.label6.TabIndex = 2;
-            this.label6.Text = "Balance";
+            this.balanceLb.AutoSize = true;
+            this.balanceLb.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.balanceLb.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.balanceLb.Location = new System.Drawing.Point(456, 176);
+            this.balanceLb.Name = "balanceLb";
+            this.balanceLb.Size = new System.Drawing.Size(78, 28);
+            this.balanceLb.TabIndex = 2;
+            this.balanceLb.Text = "Balance";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label7.Location = new System.Drawing.Point(354, 270);
+            this.label7.Location = new System.Drawing.Point(374, 270);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 28);
+            this.label7.Size = new System.Drawing.Size(60, 28);
             this.label7.TabIndex = 3;
-            this.label7.Text = "LOGOUT";
+            this.label7.Text = "BACK";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // panel2
             // 
@@ -144,15 +146,16 @@
             this.ClientSize = new System.Drawing.Size(806, 314);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.balanceLb);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.accNumberLb);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Balance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Balance";
+            this.Load += new System.EventHandler(this.Balance_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -167,8 +170,8 @@
         private Label label1;
         private Label label5;
         private Label label3;
-        private Label label4;
-        private Label label6;
+        private Label accNumberLb;
+        private Label balanceLb;
         private Label label7;
         private Panel panel2;
     }

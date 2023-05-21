@@ -35,8 +35,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.confirmPinTb = new System.Windows.Forms.TextBox();
+            this.newPinTb = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -62,6 +62,7 @@
             this.label2.Size = new System.Drawing.Size(44, 50);
             this.label2.TabIndex = 1;
             this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -116,33 +117,37 @@
             this.button1.TabIndex = 23;
             this.button1.Text = "CHANGE PIN";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox2
+            // confirmPinTb
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(320, 211);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(320, 38);
-            this.textBox2.TabIndex = 21;
+            this.confirmPinTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.confirmPinTb.Location = new System.Drawing.Point(320, 211);
+            this.confirmPinTb.Name = "confirmPinTb";
+            this.confirmPinTb.PasswordChar = '*';
+            this.confirmPinTb.Size = new System.Drawing.Size(320, 38);
+            this.confirmPinTb.TabIndex = 21;
             // 
-            // textBox1
+            // newPinTb
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(320, 149);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(320, 38);
-            this.textBox1.TabIndex = 22;
+            this.newPinTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.newPinTb.Location = new System.Drawing.Point(320, 149);
+            this.newPinTb.Name = "newPinTb";
+            this.newPinTb.PasswordChar = '*';
+            this.newPinTb.Size = new System.Drawing.Size(320, 38);
+            this.newPinTb.TabIndex = 22;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label7.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label7.Location = new System.Drawing.Point(418, 406);
+            this.label7.Location = new System.Drawing.Point(441, 406);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(88, 28);
+            this.label7.Size = new System.Drawing.Size(60, 28);
             this.label7.TabIndex = 24;
-            this.label7.Text = "LOGOUT";
+            this.label7.Text = "BACK";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // ChangePin
             // 
@@ -151,8 +156,8 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.confirmPinTb);
+            this.Controls.Add(this.newPinTb);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel2);
@@ -177,8 +182,8 @@
         private Label label3;
         private Label label5;
         private Button button1;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox confirmPinTb;
+        private TextBox newPinTb;
         private Label label7;
     }
 }

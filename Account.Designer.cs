@@ -37,23 +37,21 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.nameTb = new System.Windows.Forms.TextBox();
+            this.accNumTb = new System.Windows.Forms.TextBox();
+            this.faNameTb = new System.Windows.Forms.TextBox();
+            this.addressTb = new System.Windows.Forms.TextBox();
+            this.phoneTb = new System.Windows.Forms.TextBox();
+            this.pinTb = new System.Windows.Forms.TextBox();
+            this.educationCb = new System.Windows.Forms.ComboBox();
+            this.dobDate = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.occupationTb = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -78,6 +76,7 @@
             this.label2.Size = new System.Drawing.Size(44, 50);
             this.label2.TabIndex = 1;
             this.label2.Text = "X";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -156,23 +155,12 @@
             this.label8.TabIndex = 7;
             this.label8.Text = "PIN";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label9.Location = new System.Drawing.Point(432, 175);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(96, 28);
-            this.label9.TabIndex = 7;
-            this.label9.Text = "BALANCE";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label10.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label10.Location = new System.Drawing.Point(432, 219);
+            this.label10.Location = new System.Drawing.Point(432, 175);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(119, 28);
             this.label10.TabIndex = 9;
@@ -183,7 +171,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label11.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label11.Location = new System.Drawing.Point(432, 263);
+            this.label11.Location = new System.Drawing.Point(432, 219);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(131, 28);
             this.label11.TabIndex = 8;
@@ -194,93 +182,80 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label12.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label12.Location = new System.Drawing.Point(432, 307);
+            this.label12.Location = new System.Drawing.Point(432, 263);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(52, 28);
             this.label12.TabIndex = 8;
             this.label12.Text = "DOB";
             // 
-            // textBox2
+            // nameTb
             // 
-            this.textBox2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox2.Location = new System.Drawing.Point(142, 170);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(259, 38);
-            this.textBox2.TabIndex = 10;
+            this.nameTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.nameTb.Location = new System.Drawing.Point(142, 170);
+            this.nameTb.Name = "nameTb";
+            this.nameTb.Size = new System.Drawing.Size(259, 38);
+            this.nameTb.TabIndex = 10;
             // 
-            // textBox1
+            // accNumTb
             // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox1.Location = new System.Drawing.Point(142, 126);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(259, 38);
-            this.textBox1.TabIndex = 11;
+            this.accNumTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.accNumTb.Location = new System.Drawing.Point(142, 126);
+            this.accNumTb.Name = "accNumTb";
+            this.accNumTb.Size = new System.Drawing.Size(259, 38);
+            this.accNumTb.TabIndex = 11;
             // 
-            // textBox3
+            // faNameTb
             // 
-            this.textBox3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox3.Location = new System.Drawing.Point(142, 214);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(259, 38);
-            this.textBox3.TabIndex = 11;
+            this.faNameTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.faNameTb.Location = new System.Drawing.Point(142, 214);
+            this.faNameTb.Name = "faNameTb";
+            this.faNameTb.Size = new System.Drawing.Size(259, 38);
+            this.faNameTb.TabIndex = 11;
             // 
-            // textBox4
+            // addressTb
             // 
-            this.textBox4.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox4.Location = new System.Drawing.Point(142, 258);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(259, 38);
-            this.textBox4.TabIndex = 10;
+            this.addressTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.addressTb.Location = new System.Drawing.Point(142, 258);
+            this.addressTb.Name = "addressTb";
+            this.addressTb.Size = new System.Drawing.Size(259, 38);
+            this.addressTb.TabIndex = 10;
             // 
-            // textBox5
+            // phoneTb
             // 
-            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox5.Location = new System.Drawing.Point(142, 302);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(259, 38);
-            this.textBox5.TabIndex = 10;
+            this.phoneTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.phoneTb.Location = new System.Drawing.Point(142, 302);
+            this.phoneTb.Name = "phoneTb";
+            this.phoneTb.Size = new System.Drawing.Size(259, 38);
+            this.phoneTb.TabIndex = 10;
             // 
-            // textBox6
+            // pinTb
             // 
-            this.textBox6.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox6.Location = new System.Drawing.Point(569, 126);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(259, 38);
-            this.textBox6.TabIndex = 11;
+            this.pinTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.pinTb.Location = new System.Drawing.Point(569, 126);
+            this.pinTb.Name = "pinTb";
+            this.pinTb.Size = new System.Drawing.Size(259, 38);
+            this.pinTb.TabIndex = 11;
             // 
-            // textBox7
+            // educationCb
             // 
-            this.textBox7.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.textBox7.Location = new System.Drawing.Point(569, 170);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(259, 38);
-            this.textBox7.TabIndex = 10;
+            this.educationCb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.educationCb.FormattingEnabled = true;
+            this.educationCb.Items.AddRange(new object[] {
+            "Non Graduate",
+            "Under Graduate",
+            "Post Graduate"});
+            this.educationCb.Location = new System.Drawing.Point(569, 170);
+            this.educationCb.Name = "educationCb";
+            this.educationCb.Size = new System.Drawing.Size(259, 39);
+            this.educationCb.TabIndex = 12;
             // 
-            // comboBox1
+            // dobDate
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(569, 214);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(259, 39);
-            this.comboBox1.TabIndex = 12;
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(569, 257);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(259, 39);
-            this.comboBox2.TabIndex = 12;
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.dateTimePicker1.Location = new System.Drawing.Point(569, 302);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(259, 38);
-            this.dateTimePicker1.TabIndex = 13;
+            this.dobDate.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.dobDate.Location = new System.Drawing.Point(569, 258);
+            this.dobDate.Name = "dobDate";
+            this.dobDate.Size = new System.Drawing.Size(259, 38);
+            this.dobDate.TabIndex = 13;
             // 
             // button1
             // 
@@ -293,6 +268,7 @@
             this.button1.TabIndex = 15;
             this.button1.Text = "LOGIN";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // label13
             // 
@@ -304,6 +280,7 @@
             this.label13.Size = new System.Drawing.Size(88, 28);
             this.label13.TabIndex = 14;
             this.label13.Text = "LOGOUT";
+            this.label13.Click += new System.EventHandler(this.label13_Click);
             // 
             // panel2
             // 
@@ -314,30 +291,36 @@
             this.panel2.Size = new System.Drawing.Size(840, 13);
             this.panel2.TabIndex = 16;
             // 
+            // occupationTb
+            // 
+            this.occupationTb.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.occupationTb.Location = new System.Drawing.Point(569, 214);
+            this.occupationTb.Name = "occupationTb";
+            this.occupationTb.Size = new System.Drawing.Size(259, 38);
+            this.occupationTb.TabIndex = 17;
+            // 
             // Account
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(840, 501);
+            this.Controls.Add(this.occupationTb);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label13);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.dobDate);
+            this.Controls.Add(this.educationCb);
+            this.Controls.Add(this.phoneTb);
+            this.Controls.Add(this.addressTb);
+            this.Controls.Add(this.faNameTb);
+            this.Controls.Add(this.pinTb);
+            this.Controls.Add(this.nameTb);
+            this.Controls.Add(this.accNumTb);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label3);
@@ -365,22 +348,20 @@
         private Label label6;
         private Label label7;
         private Label label8;
-        private Label label9;
         private Label label10;
         private Label label11;
         private Label label12;
-        private TextBox textBox2;
-        private TextBox textBox1;
-        private TextBox textBox3;
-        private TextBox textBox4;
-        private TextBox textBox5;
-        private TextBox textBox6;
-        private TextBox textBox7;
-        private ComboBox comboBox1;
-        private ComboBox comboBox2;
-        private DateTimePicker dateTimePicker1;
+        private TextBox nameTb;
+        private TextBox accNumTb;
+        private TextBox faNameTb;
+        private TextBox addressTb;
+        private TextBox phoneTb;
+        private TextBox pinTb;
+        private ComboBox educationCb;
+        private DateTimePicker dobDate;
         private Button button1;
         private Label label13;
         private Panel panel2;
+        private TextBox occupationTb;
     }
 }

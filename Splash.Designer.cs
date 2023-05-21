@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar = new System.Windows.Forms.ProgressBar();
-            this.label2 = new System.Windows.Forms.Label();
+            this.percentageLb = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -51,30 +53,35 @@
             this.progressBar.Size = new System.Drawing.Size(800, 22);
             this.progressBar.TabIndex = 1;
             // 
-            // label2
+            // percentageLb
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(378, 383);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(52, 50);
-            this.label2.TabIndex = 0;
-            this.label2.Text = "%";
+            this.percentageLb.AutoSize = true;
+            this.percentageLb.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.percentageLb.ForeColor = System.Drawing.Color.White;
+            this.percentageLb.Location = new System.Drawing.Point(378, 383);
+            this.percentageLb.Name = "percentageLb";
+            this.percentageLb.Size = new System.Drawing.Size(52, 50);
+            this.percentageLb.TabIndex = 0;
+            this.percentageLb.Text = "%";
             // 
-            // Form1
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // Splash
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GrayText;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.progressBar);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.percentageLb);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "Splash";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Splash_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -84,6 +91,7 @@
 
         private Label label1;
         private ProgressBar progressBar;
-        private Label label2;
+        private Label percentageLb;
+        private System.Windows.Forms.Timer timer1;
     }
 }
