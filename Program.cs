@@ -1,4 +1,5 @@
 using ATMSimulator.Model.AppDbContext;
+using ATMSimulator.View.Forms;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
@@ -38,7 +39,7 @@ namespace ATMSimulator
 
             // Create an instance of your main form and pass the configuration
             //MainForm mainForm = new MainForm(configuration);
-            Application.Run(new Splash());
+            Application.Run(new LoginForm());
         }
     }
 }

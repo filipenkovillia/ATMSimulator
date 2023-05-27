@@ -33,7 +33,7 @@ namespace ATMSimulator.View.Forms
             foreach (var transaction in accountStatement)
             {
                 ListViewItem item = new ListViewItem(transaction.TransactionDate.ToString());
-                item.SubItems.Add(transaction.AccountId.ToString());
+                item.SubItems.Add(transaction.AccountToId.ToString());
                 item.SubItems.Add(transaction.Amount.ToString());
                 lvAccountStatement.Items.Add(item);
             }

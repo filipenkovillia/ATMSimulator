@@ -4,7 +4,8 @@ namespace ATMSimulator.Model.Entities
 {
     public class Transaction : BaseEntity
     {
-        public Guid AccountId { get; set; }
+        public Guid? AccountToId { get; set; }
+        public Guid? AccountFromId { get; set; }
         public TransactionType TransactionType { get; set; }
         public decimal Amount { get; set; }
         public DateTime TransactionDate { get; set; }
