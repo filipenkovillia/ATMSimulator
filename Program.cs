@@ -1,3 +1,7 @@
+using ATMSimulator.Model.AppDbContext;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 namespace ATMSimulator
 {
     internal static class Program
@@ -8,9 +12,32 @@ namespace ATMSimulator
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            // Build the configuration
+            IConfiguration configuration = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                .Build();
+
+            string connectionString = configuration.GetConnectionString("DefaultConnection");
+
+            // Create DbContextOptions
+            var options = new DbContextOptionsBuilder<AppDbContext>()
+                .UseSqlServer(connectionString)
+                .Options;
+
+            // Create the DbContext
+            using (var dbContext = new AppDbContext(options))
+            {
+                // Perform migration operations
+                dbContext.Database.Migrate();
+            }
+
+            // Create an instance of your main form and pass the configuration
+            //MainForm mainForm = new MainForm(configuration);
             Application.Run(new Splash());
         }
     }
