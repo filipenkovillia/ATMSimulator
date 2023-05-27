@@ -1,4 +1,6 @@
 ﻿using ATMSimulator.Model.AppDbContext;
+using ATMSimulator.Model.Entities;
+using ATMSimulator.Session;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
@@ -17,16 +19,17 @@ namespace ATMSimulator.Controller
             _dbContext = DbContextProvider.Instance.GetDbContext();
         }
 
-        public bool AuthenticateUser(string cardNumber, string pin)
+        public void AuthenticateUser(string cardNumber, string pin)
         {
-            // Perform authentication logic here
-            // Query the database to check if the username and password match
-
             var card = _dbContext.Cards
                 .FirstOrDefault(c => c.Number == cardNumber 
                                   && c.PIN == pin);
 
-            return card != null;
+            if (card != null)
+            {
+                UserSession.Instance.CardId = card.Id;
+                UserSession.Instance.AccountId = card.AccountId;
+            }
         }
     }
 }

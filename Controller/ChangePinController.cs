@@ -13,10 +13,15 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public ChangePinController(Card card) 
+        public ChangePinController(Guid cardId) 
         {
             _dbContext = DbContextProvider.Instance.GetDbContext();
-            _card = card;
+            _card = GetCardById(cardId);
+        }
+
+        private Card GetCardById(Guid cardId)
+        {
+            return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
         public bool IsCurrentPinCorrect(string currentPin)

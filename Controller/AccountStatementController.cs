@@ -13,10 +13,15 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Account _account;
 
-        public AccountStatementController(Account account) 
+        public AccountStatementController(Guid accountId) 
         {
             _dbContext = DbContextProvider.Instance.GetDbContext();
-            _account = account;
+            _account = GetAccountById(accountId);
+        }
+
+        private Account GetAccountById(Guid accountId)
+        {
+            return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
         }
 
         public List<Transaction> GetAccountTransactions()
@@ -25,6 +30,13 @@ namespace ATMSimulator.Controller
                 .Where(x => x.AccountToId == _account.Id
                          || x.AccountFromId == _account.Id)
                 .ToList();
+        }
+
+        public Guid GetTransactionId(string transactionId)
+        {
+            Guid result = Guid.Empty;
+            var isSuccess = Guid.TryParse(transactionId, out result);
+            return result;
         }
     }
 }

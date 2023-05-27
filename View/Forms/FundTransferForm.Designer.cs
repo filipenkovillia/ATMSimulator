@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tbAmount = new System.Windows.Forms.TextBox();
-            this.tbRecipientAccount = new System.Windows.Forms.TextBox();
+            this.tbRecipientCard = new System.Windows.Forms.TextBox();
             this.btnTransfer = new System.Windows.Forms.Button();
             this.lbCancel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,11 +44,11 @@
             // 
             // tbRecipientAccount
             // 
-            this.tbRecipientAccount.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbRecipientAccount.Location = new System.Drawing.Point(279, 133);
-            this.tbRecipientAccount.Name = "tbRecipientAccount";
-            this.tbRecipientAccount.Size = new System.Drawing.Size(236, 38);
-            this.tbRecipientAccount.TabIndex = 15;
+            this.tbRecipientCard.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.tbRecipientCard.Location = new System.Drawing.Point(279, 133);
+            this.tbRecipientCard.Name = "tbRecipientAccount";
+            this.tbRecipientCard.Size = new System.Drawing.Size(236, 38);
+            this.tbRecipientCard.TabIndex = 15;
             // 
             // btnTransfer
             // 
@@ -82,7 +82,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbCancel);
             this.Controls.Add(this.btnTransfer);
-            this.Controls.Add(this.tbRecipientAccount);
+            this.Controls.Add(this.tbRecipientCard);
             this.Controls.Add(this.tbAmount);
             this.Name = "FundTransferForm";
             this.Text = "FundTransferForm";
@@ -94,7 +94,7 @@
         #endregion
 
         private TextBox tbAmount;
-        private TextBox tbRecipientAccount;
+        private TextBox tbRecipientCard;
         private Button btnTransfer;
         private Label lbCancel;
     }

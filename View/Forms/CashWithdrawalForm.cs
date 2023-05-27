@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Session;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +14,18 @@ namespace ATMSimulator.View.Forms
 {
     public partial class CashWithdrawalForm : Form
     {
+        private readonly CashWithdrawalController _cashWithdrawalController;
+
         public CashWithdrawalForm()
         {
             InitializeComponent();
+            _cashWithdrawalController = new CashWithdrawalController(UserSession.Instance.CardId);
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            decimal withdrawalAmount = decimal.Parse(tbAmount.Text); // Get the withdrawal amount from the input textbox
-
-            // Perform withdrawal logic, deduct the amount from the user's account balance
-            bool withdrawalSuccessful = false;//PerformWithdrawal(withdrawalAmount); // Replace with your own withdrawal logic
+            decimal withdrawalAmount = decimal.Parse(tbAmount.Text);
+            bool withdrawalSuccessful = _cashWithdrawalController.WithdrawCash(withdrawalAmount);
 
             if (withdrawalSuccessful)
             {
@@ -33,7 +36,6 @@ namespace ATMSimulator.View.Forms
                 MessageBox.Show("Withdrawal failed. Please try again.");
             }
 
-            // Clear the input textbox
             tbAmount.Text = string.Empty;
         }
 

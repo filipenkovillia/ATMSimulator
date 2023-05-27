@@ -1,4 +1,6 @@
-﻿using ATMSimulator.Model.Entities;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Model.Entities;
+using ATMSimulator.Session;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,9 +15,12 @@ namespace ATMSimulator.View.Forms
 {
     public partial class AccountStatementForm : Form
     {
+        private readonly AccountStatementController _accountStatementController;
+
         public AccountStatementForm()
         {
             InitializeComponent();
+            _accountStatementController = new AccountStatementController(UserSession.Instance.AccountId);
         }
 
         private void lbCancel_Click(object sender, EventArgs e)
@@ -27,13 +32,17 @@ namespace ATMSimulator.View.Forms
 
         private void AccountStatementForm_Load(object sender, EventArgs e)
         {
-            var accountStatement = new List<Transaction>();//GetAccountStatement(); // Replace with your own logic to retrieve the account statement
+            var accountStatement = _accountStatementController.GetAccountTransactions();
 
-            // Display the account statement in the list view
             foreach (var transaction in accountStatement)
             {
                 ListViewItem item = new ListViewItem(transaction.TransactionDate.ToString());
+                item.SubItems.Add(transaction.Id.ToString());
+                item.SubItems.Add(transaction.AccountFromId.ToString());
                 item.SubItems.Add(transaction.AccountToId.ToString());
+                item.SubItems.Add(transaction.Status.ToString());
+                item.SubItems.Add(transaction.TransactionDate.ToString());
+                item.SubItems.Add(transaction.TransactionType.ToString());
                 item.SubItems.Add(transaction.Amount.ToString());
                 lvAccountStatement.Items.Add(item);
             }
@@ -42,12 +51,13 @@ namespace ATMSimulator.View.Forms
         private void lvAccountStatement_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedTransaction = lvAccountStatement.SelectedItems[0];
-            string transactionType = selectedTransaction.SubItems[1].Text;
-            decimal transactionAmount = decimal.Parse(selectedTransaction.SubItems[2].Text);
 
-            // Open the receipt form for the selected transaction
-            ReceiptForm receiptForm = new ReceiptForm(transactionType, transactionAmount);
-            receiptForm.ShowDialog();
+            Guid transactionId = _accountStatementController.GetTransactionId(selectedTransaction.SubItems[0].Text);
+            if (transactionId != Guid.Empty)
+            {
+                var receiptForm = new ReceiptForm(transactionId);
+                receiptForm.ShowDialog();
+            }
         }
     }
 }

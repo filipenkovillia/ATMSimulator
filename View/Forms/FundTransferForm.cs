@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Session;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,30 +14,23 @@ namespace ATMSimulator.View.Forms
 {
     public partial class FundTransferForm : Form
     {
+        private readonly FundTransferController _fundTransferController;
+
         public FundTransferForm()
         {
             InitializeComponent();
+            _fundTransferController = new FundTransferController(UserSession.Instance.AccountId);
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-            string recipientAccount = tbRecipientAccount.Text; // Get the recipient account number from the input textbox
-            decimal transferAmount = decimal.Parse(tbAmount.Text); // Get the transfer amount from the input textbox
+            string recipientCard = tbRecipientCard.Text;
+            decimal transferAmount = decimal.Parse(tbAmount.Text); 
+            
+            // TODO: add checks for incorrect transaction
+            _fundTransferController.TransferFunds(recipientCard, transferAmount);
 
-            // Perform fund transfer logic
-            bool transferSuccessful = false;//PerformFundTransfer(recipientAccount, transferAmount); // Replace with your own transfer logic
-
-            if (transferSuccessful)
-            {
-                MessageBox.Show($"Fund transfer successful! Amount: ${transferAmount} to Account: {recipientAccount}");
-            }
-            else
-            {
-                MessageBox.Show("Fund transfer failed. Please try again.");
-            }
-
-            // Clear the input textboxes
-            tbRecipientAccount.Text = string.Empty;
+            tbRecipientCard.Text = string.Empty;
             tbAmount.Text = string.Empty;
         }
 

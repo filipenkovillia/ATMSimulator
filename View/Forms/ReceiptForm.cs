@@ -1,4 +1,5 @@
-﻿using ATMSimulator.Model.Entities;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Model.Entities;
 using ATMSimulator.Model.Enum;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,12 @@ namespace ATMSimulator.View.Forms
 {
     public partial class ReceiptForm : Form
     {
-        private string transactionType;
-        private decimal transactionAmount;
+        private readonly ReceiptController _receiptController;
 
-        public ReceiptForm(string type, decimal amount)
+        public ReceiptForm(Guid transactionId)
         {
             InitializeComponent();
-            transactionType = type;
-            transactionAmount = amount;
+            _receiptController = new ReceiptController(transactionId);
         }
 
         private void lbCancel_Click(object sender, EventArgs e)
@@ -33,20 +32,21 @@ namespace ATMSimulator.View.Forms
 
         private void ReceiptForm_Load(object sender, EventArgs e)
         {
-            lbTransactionType.Text = transactionType;
-            lbAmount.Text = $"${transactionAmount}";
+            var transaction = _receiptController.GetTransaction();
+            lbTransactionType.Text = transaction.TransactionType.ToString();
+            lbAmount.Text = $"${transaction.Amount}";
 
-            // Print the receipt automatically when the form is loaded
             PrintReceipt();
         }
 
         private void PrintReceipt()
         {
-            // Implement your logic to print the receipt here
-            // This is just a placeholder method
+            var transaction = _receiptController.GetTransaction();
 
-            // In this example, we'll display a message box with the receipt details
-            string receiptText = $"Transaction Type: {transactionType}\nTransaction Amount: ${transactionAmount}\n\nReceipt printed successfully!";
+            string receiptText = $"Transaction Type: {transaction.TransactionType}\n" +
+                $"Transaction Amount: ${transaction.Amount}\n\n" +
+                $"Receipt printed successfully!";
+
             MessageBox.Show(receiptText, "Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }

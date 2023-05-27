@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Session;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,12 @@ namespace ATMSimulator.View.Forms
 {
     public partial class LoginForm : Form
     {
+        private readonly LoginController _loginController;
+
         public LoginForm()
         {
             InitializeComponent();
+            _loginController = new LoginController();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -22,13 +27,18 @@ namespace ATMSimulator.View.Forms
             string cardNumber = tbCardNumber.Text;
             string pin = tbPIN.Text;
 
-            // Perform login authentication and validation
-            // Add your login logic here
+            _loginController.AuthenticateUser(cardNumber, pin);
 
-            // If login is successful, navigate to the main menu form
-            MainMenuForm mainMenuForm = new MainMenuForm();
-            mainMenuForm.Show();
-            this.Hide();
+            if (UserSession.Instance.IsLoggedIn())
+            {
+                MainMenuForm mainMenuForm = new MainMenuForm();
+                mainMenuForm.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Incorrect credentials");
+            }
         }
 
         private void lbSignUp_Click(object sender, EventArgs e)

@@ -13,9 +13,15 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Account _account;
 
-        public BalanceInquiryController(Account account) 
+        public BalanceInquiryController(Guid accountId) 
         { 
             _dbContext = DbContextProvider.Instance.GetDbContext();
+            _account = GetAccountById(accountId);
+        }
+
+        private Account GetAccountById(Guid accountId)
+        {
+            return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
         }
 
         public decimal GetAccountBalance()

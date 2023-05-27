@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,21 @@ namespace ATMSimulator.View.Forms
 {
     public partial class SignUpForm : Form
     {
+        private readonly SignUpController _signUpController;
+
         public SignUpForm()
         {
             InitializeComponent();
+            _signUpController = new SignUpController();
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            string firstName = tbFirstName.Text; // Get the first name from the input textbox
-            string lastName = tbLastName.Text; // Get the last name from the input textbox
-            string phoneNumber = tbPhoneNumber.Text; // Get the email from the input textbox
+            string firstName = tbFirstName.Text;
+            string lastName = tbLastName.Text;
+            string phoneNumber = tbPhoneNumber.Text;
 
-            // Perform sign-up logic
-            bool signUpSuccessful = false;//SignUp(firstName, lastName, phoneNumber, password); // Replace with your own sign-up logic
+            bool signUpSuccessful = _signUpController.TrySignUp(firstName, lastName, phoneNumber);
 
             if (signUpSuccessful)
             {
@@ -35,7 +38,6 @@ namespace ATMSimulator.View.Forms
                 MessageBox.Show("Failed to sign up. Please try again.");
             }
 
-            // Clear the input textboxes
             tbFirstName.Text = string.Empty;
             tbLastName.Text = string.Empty;
             tbPhoneNumber.Text = string.Empty;

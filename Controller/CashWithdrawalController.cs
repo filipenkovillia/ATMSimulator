@@ -13,21 +13,33 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public CashWithdrawalController(Card card)
+        public CashWithdrawalController(Guid cardId)
         {
             _dbContext = DbContextProvider.Instance.GetDbContext();
-            _card = card;
+            _card = GetCardById(cardId);
         }
 
-        public void WithdrawCash(decimal amount)
+        private Card GetCardById(Guid cardId)
+        {
+            return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
+        }
+
+        public bool WithdrawCash(decimal amount)
         {
             var account = GetAccountById(_card.AccountId);
-            TryWithdrawAmountFromAccount(account, amount);
+            if(TryWithdrawAmountFromAccount(account, amount))
+            {
+                // TODO: create transaction based on result of method
+                var transaction = CreateNewTransaction(amount);
 
-            // TODO: create transaction based on result of method
-            var transaction = CreateNewTransaction(amount);
+                _dbContext.SaveChanges();
 
-            _dbContext.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private Account GetAccountById(Guid accountId)

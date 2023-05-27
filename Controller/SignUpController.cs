@@ -17,15 +17,28 @@ namespace ATMSimulator.Controller
             _dbContext = DbContextProvider.Instance.GetDbContext();
         }
 
-        public Card SignUp(string firstName, string lastName, string phoneNumber)
+        public bool TrySignUp(string firstName, string lastName, string phoneNumber)
         {
-            var customer = CreateNewCustomer(firstName, lastName, phoneNumber);
-            var account = CreateNewAccount(customer);
-            var card = CreateNewCard(customer, account);
+            if (ValidateInputData(firstName, lastName, phoneNumber))
+            {
+                var customer = CreateNewCustomer(firstName, lastName, phoneNumber);
+                var account = CreateNewAccount(customer);
+                var card = CreateNewCard(customer, account);
 
-            _dbContext.SaveChanges();
+                _dbContext.SaveChanges();
 
-            return card;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private bool ValidateInputData(string firstName, string lastName, string phoneNumber)
+        {
+            // TODO: validation
+            return true;
         }
 
         private Customer CreateNewCustomer(string firstName, string lastName, string phoneNumber)

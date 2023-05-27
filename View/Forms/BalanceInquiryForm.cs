@@ -1,4 +1,7 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Model.Entities;
+using ATMSimulator.Session;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,14 +15,17 @@ namespace ATMSimulator.View.Forms
 {
     public partial class BalanceInquiryForm : Form
     {
+        private readonly BalanceInquiryController _balanceInquiryController;
+
         public BalanceInquiryForm()
         {
             InitializeComponent();
+            _balanceInquiryController = new BalanceInquiryController(UserSession.Instance.AccountId);
         }
 
         private void BalanceInquiryForm_Load(object sender, EventArgs e)
         {
-            decimal accountBalance = 0;//GetAccountBalance(); // Replace with your own logic to retrieve the account balance
+            decimal accountBalance = _balanceInquiryController.GetAccountBalance();
 
             lbBalance.Text = $"Account Balance: ${accountBalance}";
         }

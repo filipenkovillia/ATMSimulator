@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ATMSimulator.Controller;
+using ATMSimulator.Session;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,21 +14,23 @@ namespace ATMSimulator.View.Forms
 {
     public partial class ChangePinForm : Form
     {
+        private readonly ChangePinController _changePinController;
+
         public ChangePinForm()
         {
             InitializeComponent();
+            _changePinController = new ChangePinController(UserSession.Instance.CardId);
         }
 
         private void btnChangePIN_Click(object sender, EventArgs e)
         {
-            string currentPIN = tbCurrentPIN.Text; // Get the current PIN from the input textbox
-            string newPIN = tbNewPIN.Text; // Get the new PIN from the input textbox
+            string currentPIN = tbCurrentPIN.Text;
+            string newPIN = tbNewPIN.Text;
 
-            // Perform change PIN logic
-            bool pinChanged = false;//ChangePIN(currentPIN, newPIN); // Replace with your own change PIN logic
-
-            if (pinChanged)
+            // TODO: additional checks
+            if (_changePinController.IsCurrentPinCorrect(currentPIN))
             {
+                _changePinController.SaveNewPin(newPIN);
                 MessageBox.Show("PIN changed successfully!");
             }
             else
@@ -34,7 +38,6 @@ namespace ATMSimulator.View.Forms
                 MessageBox.Show("Failed to change PIN. Please try again.");
             }
 
-            // Clear the input textboxes
             tbCurrentPIN.Text = string.Empty;
             tbNewPIN.Text = string.Empty;
         }

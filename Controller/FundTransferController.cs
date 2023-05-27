@@ -13,10 +13,10 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Account _account;
 
-        public FundTransferController()
+        public FundTransferController(Guid accountId)
         {
             _dbContext = DbContextProvider.Instance.GetDbContext();
-            _account = new Account();
+            _account = GetAccountById(accountId);
         }
 
         public void TransferFunds(string cardNumberTo, decimal amount)
