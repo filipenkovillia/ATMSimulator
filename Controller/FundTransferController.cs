@@ -15,7 +15,7 @@ namespace ATMSimulator.Controller
 
         public FundTransferController(Guid accountId)
         {
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
             _account = GetAccountById(accountId);
         }
 
@@ -25,6 +25,12 @@ namespace ATMSimulator.Controller
             var accountTo = GetAccountById(cardTo.AccountId);
             var transaction = CreateNewTransaction(_account.Id, accountTo.Id, amount);
 
+            _account.Balance -= amount;
+            accountTo.Balance += amount;
+
+            _dbContext.Accounts.Update(_account);
+            _dbContext.Accounts.Update(accountTo);
+            _dbContext.Transactions.Add(transaction);
             _dbContext.SaveChanges();
         }
 

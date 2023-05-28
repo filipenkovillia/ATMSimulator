@@ -14,7 +14,7 @@ namespace ATMSimulator.Controller
 
         public SignUpController() 
         { 
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
         }
 
         public bool TrySignUp(string firstName, string lastName, string phoneNumber)
@@ -25,6 +25,9 @@ namespace ATMSimulator.Controller
                 var account = CreateNewAccount(customer);
                 var card = CreateNewCard(customer, account);
 
+                _dbContext.Customers.Add(customer);
+                _dbContext.Accounts.Add(account);
+                _dbContext.Cards.Add(card);
                 _dbContext.SaveChanges();
 
                 return true;

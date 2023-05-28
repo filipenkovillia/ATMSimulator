@@ -15,7 +15,7 @@ namespace ATMSimulator.Controller
 
         public AccountStatementController(Guid accountId) 
         {
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
             _account = GetAccountById(accountId);
         }
 

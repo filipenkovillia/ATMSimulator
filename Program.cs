@@ -17,7 +17,6 @@ namespace ATMSimulator
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            // Build the configuration
             IConfiguration configuration = new ConfigurationBuilder()
                 .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -25,20 +24,12 @@ namespace ATMSimulator
 
             string connectionString = configuration.GetConnectionString("DefaultConnection");
 
-            // Create DbContextOptions
             var options = new DbContextOptionsBuilder<AppDbContext>()
                 .UseSqlServer(connectionString)
                 .Options;
 
-            // Create the DbContext
-            using (var dbContext = new AppDbContext(options))
-            {
-                // Perform migration operations
-                dbContext.Database.Migrate();
-            }
+            DbContextProvider.Initialize(options);
 
-            // Create an instance of your main form and pass the configuration
-            //MainForm mainForm = new MainForm(configuration);
             Application.Run(new LoginForm());
         }
     }

@@ -15,7 +15,7 @@ namespace ATMSimulator.Controller
 
         public ChangePinController(Guid cardId) 
         {
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
         }
 
@@ -32,6 +32,8 @@ namespace ATMSimulator.Controller
         public void SaveNewPin(string newPin)
         {
             _card.PIN = newPin;
+
+            _dbContext.Cards.Update(_card);
             _dbContext.SaveChanges();
         }
     }

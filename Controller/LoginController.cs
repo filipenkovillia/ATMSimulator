@@ -16,7 +16,7 @@ namespace ATMSimulator.Controller
 
         public LoginController() 
         {
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
         }
 
         public void AuthenticateUser(string cardNumber, string pin)

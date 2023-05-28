@@ -1,26 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace ATMSimulator.Model.AppDbContext
 {
     public sealed class DbContextProvider
     {
-        private static readonly Lazy<DbContextProvider> instance = new Lazy<DbContextProvider>(() => new DbContextProvider());
-        private readonly AppDbContext _dbContext;
+        private static AppDbContext dbContext;
 
-        private DbContextProvider()
+        public static void Initialize(DbContextOptions<AppDbContext> options)
         {
-            _dbContext = new AppDbContext();
+            dbContext = new AppDbContext(options);
         }
 
-        public static DbContextProvider Instance => instance.Value;
-
-        public AppDbContext GetDbContext()
+        public static AppDbContext GetDbContext()
         {
-            return _dbContext;
+            if (dbContext == null)
+            {
+                throw new InvalidOperationException("DbContext has not been initialized. Call the Initialize method first.");
+            }
+
+            return dbContext;
         }
     }
 }

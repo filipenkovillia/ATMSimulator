@@ -26,42 +26,30 @@ namespace ATMSimulator.Model.AppDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // Configure Account entity
-            modelBuilder.Entity<Entities.Account>(entity =>
+            modelBuilder.Entity<Account>(entity =>
             {
                 entity.HasKey(a => a.Id);
-                // Add any additional configuration for the Account entity
             });
 
-            // Configure Transaction entity
             modelBuilder.Entity<Transaction>(entity =>
             {
                 entity.HasKey(t => t.Id);
-                // Add any additional configuration for the Transaction entity
             });
 
-            // Configure ATM entity
             modelBuilder.Entity<ATM>(entity =>
             {
                 entity.HasKey(a => a.Id);
-                // Add any additional configuration for the ATM entity
             });
 
-            // Configure Customer entity
             modelBuilder.Entity<Customer>(entity =>
             {
                 entity.HasKey(c => c.Id);
-                // Add any additional configuration for the Customer entity
             });
 
-            // Configure Card entity
             modelBuilder.Entity<Card>(entity =>
             {
                 entity.HasKey(c => c.Id);
-                // Add any additional configuration for the Card entity
             });
-
-            // Add any additional configuration or relationships between entities
 
             base.OnModelCreating(modelBuilder);
         }

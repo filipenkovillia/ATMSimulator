@@ -15,7 +15,7 @@ namespace ATMSimulator.Controller
 
         public CashWithdrawalController(Guid cardId)
         {
-            _dbContext = DbContextProvider.Instance.GetDbContext();
+            _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
         }
 
@@ -32,6 +32,7 @@ namespace ATMSimulator.Controller
                 // TODO: create transaction based on result of method
                 var transaction = CreateNewTransaction(amount);
 
+                _dbContext.Transactions.Add(transaction);
                 _dbContext.SaveChanges();
 
                 return true;
