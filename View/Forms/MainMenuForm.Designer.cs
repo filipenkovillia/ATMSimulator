@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lbLogout = new System.Windows.Forms.Label();
-            this.btnReceipt = new System.Windows.Forms.Button();
             this.btnAccountStatement = new System.Windows.Forms.Button();
             this.btnChangePin = new System.Windows.Forms.Button();
             this.btnFundTransfer = new System.Windows.Forms.Button();
@@ -48,19 +47,6 @@
             this.lbLogout.TabIndex = 13;
             this.lbLogout.Text = "LOGOUT";
             this.lbLogout.Click += new System.EventHandler(this.lbLogout_Click);
-            // 
-            // btnReceipt
-            // 
-            this.btnReceipt.BackColor = System.Drawing.SystemColors.GrayText;
-            this.btnReceipt.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.btnReceipt.ForeColor = System.Drawing.Color.White;
-            this.btnReceipt.Location = new System.Drawing.Point(498, 264);
-            this.btnReceipt.Name = "btnReceipt";
-            this.btnReceipt.Size = new System.Drawing.Size(236, 53);
-            this.btnReceipt.TabIndex = 7;
-            this.btnReceipt.Text = "Receipt";
-            this.btnReceipt.UseVisualStyleBackColor = false;
-            this.btnReceipt.Click += new System.EventHandler(this.btnReceipt_Click);
             // 
             // btnAccountStatement
             // 
@@ -133,7 +119,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.lbLogout);
-            this.Controls.Add(this.btnReceipt);
             this.Controls.Add(this.btnAccountStatement);
             this.Controls.Add(this.btnChangePin);
             this.Controls.Add(this.btnFundTransfer);
@@ -149,7 +134,6 @@
         #endregion
 
         private Label lbLogout;
-        private Button btnReceipt;
         private Button btnAccountStatement;
         private Button btnChangePin;
         private Button btnFundTransfer;

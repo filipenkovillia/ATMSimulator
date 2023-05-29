@@ -26,8 +26,13 @@ namespace ATMSimulator.Controller
                 var card = CreateNewCard(customer, account);
 
                 _dbContext.Customers.Add(customer);
+
+                account.CustomerId = customer.Id;
                 _dbContext.Accounts.Add(account);
+                
+                card.AccountId = account.Id;
                 _dbContext.Cards.Add(card);
+
                 _dbContext.SaveChanges();
 
                 return true;
@@ -83,17 +88,44 @@ namespace ATMSimulator.Controller
 
         private string GenerateAccountNumber()
         {
-            return string.Empty;
+            var lastAccount = _dbContext.Accounts.OrderBy(x => x.CreatedAt).LastOrDefault();
+            if (lastAccount != null)
+            {
+                var accountNumber = Convert.ToInt32(lastAccount.Number);
+                return (accountNumber + 1).ToString();
+            }
+            else
+            {
+                return "1";
+            }
         }
 
         private string GenerateCardNumber()
         {
-            return string.Empty;
+            var lastAccount = _dbContext.Cards.OrderBy(x => x.CreatedAt).LastOrDefault();
+            if (lastAccount != null)
+            {
+                var accountNumber = Convert.ToInt32(lastAccount.Number);
+                return (accountNumber + 1).ToString();
+            }
+            else
+            {
+                return "1";
+            }
         }
 
         private string GenerateCardPIN()
         {
-            return string.Empty;
+            var lastAccount = _dbContext.Cards.OrderBy(x => x.CreatedAt).LastOrDefault();
+            if (lastAccount != null)
+            {
+                var accountNumber = Convert.ToInt32(lastAccount.Number);
+                return (accountNumber + 1).ToString();
+            }
+            else
+            {
+                return "1";
+            }
         }
     }
 }

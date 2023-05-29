@@ -54,7 +54,6 @@
             this.tbPIN.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbPIN.Location = new System.Drawing.Point(328, 182);
             this.tbPIN.Name = "tbPIN";
-            this.tbPIN.PasswordChar = '*';
             this.tbPIN.Size = new System.Drawing.Size(320, 38);
             this.tbPIN.TabIndex = 7;
             // 

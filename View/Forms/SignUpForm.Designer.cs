@@ -56,7 +56,6 @@
             this.tbLastName.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbLastName.Location = new System.Drawing.Point(328, 56);
             this.tbLastName.Name = "tbLastName";
-            this.tbLastName.PasswordChar = '*';
             this.tbLastName.Size = new System.Drawing.Size(320, 38);
             this.tbLastName.TabIndex = 13;
             // 
@@ -118,7 +117,6 @@
             this.tbPhoneNumber.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbPhoneNumber.Location = new System.Drawing.Point(328, 100);
             this.tbPhoneNumber.Name = "tbPhoneNumber";
-            this.tbPhoneNumber.PasswordChar = '*';
             this.tbPhoneNumber.Size = new System.Drawing.Size(320, 38);
             this.tbPhoneNumber.TabIndex = 13;
             // 
