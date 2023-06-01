@@ -24,35 +24,35 @@ namespace ATMSimulator.View.Forms
         {
             var form = new BalanceInquiryForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnCashWithdrawal_Click(object sender, EventArgs e)
         {
             var form = new CashWithdrawalForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnFundTransfer_Click(object sender, EventArgs e)
         {
             var form = new FundTransferForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnAccountStatement_Click(object sender, EventArgs e)
         {
             var form = new AccountStatementForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnChangePin_Click(object sender, EventArgs e)
         {
             var form = new ChangePinForm();
             form.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void lbLogout_Click(object sender, EventArgs e)
@@ -60,7 +60,7 @@ namespace ATMSimulator.View.Forms
             UserSession.Instance.Logout();
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

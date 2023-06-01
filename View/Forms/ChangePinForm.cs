@@ -46,7 +46,7 @@ namespace ATMSimulator.View.Forms
         {
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

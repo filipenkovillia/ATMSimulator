@@ -47,7 +47,7 @@ namespace ATMSimulator.View.Forms
         {
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
-            this.Hide();
+            this.Close();
         }
     }
 }

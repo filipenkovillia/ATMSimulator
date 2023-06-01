@@ -41,7 +41,7 @@ namespace ATMSimulator.View.Forms
         {
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void btnFast10_Click(object sender, EventArgs e)

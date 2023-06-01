@@ -27,7 +27,7 @@ namespace ATMSimulator.View.Forms
         {
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
-            this.Hide();
+            this.Close();
         }
 
         private void ReceiptForm_Load(object sender, EventArgs e)
