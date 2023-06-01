@@ -48,15 +48,14 @@ namespace ATMSimulator.View.Forms
             }
         }
 
-        private void lvAccountStatement_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnReceipt_Click(object sender, EventArgs e)
         {
             var selectedTransaction = lvAccountStatement.SelectedItems[0];
 
             Guid transactionId = _accountStatementController.GetTransactionId(selectedTransaction.SubItems[0].Text);
             if (transactionId != Guid.Empty)
             {
-                var receiptForm = new ReceiptForm(transactionId);
-                receiptForm.ShowDialog();
+                MessageBox.Show(_accountStatementController.GetReceiptText(transactionId));
             }
         }
     }
