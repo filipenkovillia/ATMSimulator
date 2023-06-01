@@ -28,18 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lvAccountStatement = new System.Windows.Forms.ListView();
             this.lbCancel = new System.Windows.Forms.Label();
             this.btnReceipt = new System.Windows.Forms.Button();
+            this.dataGridViewTransactions = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransactions)).BeginInit();
             this.SuspendLayout();
-            // 
-            // lvAccountStatement
-            // 
-            this.lvAccountStatement.Location = new System.Drawing.Point(12, 39);
-            this.lvAccountStatement.Name = "lvAccountStatement";
-            this.lvAccountStatement.Size = new System.Drawing.Size(776, 337);
-            this.lvAccountStatement.TabIndex = 0;
-            this.lvAccountStatement.UseCompatibleStateImageBehavior = false;
             // 
             // lbCancel
             // 
@@ -66,26 +59,36 @@
             this.btnReceipt.UseVisualStyleBackColor = false;
             this.btnReceipt.Click += new System.EventHandler(this.btnReceipt_Click);
             // 
+            // dataGridViewTransactions
+            // 
+            this.dataGridViewTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewTransactions.Location = new System.Drawing.Point(12, 12);
+            this.dataGridViewTransactions.Name = "dataGridViewTransactions";
+            this.dataGridViewTransactions.RowHeadersWidth = 51;
+            this.dataGridViewTransactions.RowTemplate.Height = 29;
+            this.dataGridViewTransactions.Size = new System.Drawing.Size(776, 364);
+            this.dataGridViewTransactions.TabIndex = 20;
+            // 
             // AccountStatementForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridViewTransactions);
             this.Controls.Add(this.btnReceipt);
             this.Controls.Add(this.lbCancel);
-            this.Controls.Add(this.lvAccountStatement);
             this.Name = "AccountStatementForm";
             this.Text = "AccountStatementForm";
             this.Load += new System.EventHandler(this.AccountStatementForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransactions)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private ListView lvAccountStatement;
         private Label lbCancel;
         private Button btnReceipt;
+        private DataGridView dataGridViewTransactions;
     }
 }

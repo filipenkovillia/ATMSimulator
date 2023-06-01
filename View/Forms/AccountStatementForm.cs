@@ -1,15 +1,5 @@
 ﻿using ATMSimulator.Controller;
-using ATMSimulator.Model.Entities;
 using ATMSimulator.Session;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ATMSimulator.View.Forms
 {
@@ -34,25 +24,25 @@ namespace ATMSimulator.View.Forms
         {
             var accountStatement = _accountStatementController.GetAccountTransactions();
 
-            foreach (var transaction in accountStatement)
-            {
-                ListViewItem item = new ListViewItem(transaction.TransactionDate.ToString());
-                item.SubItems.Add(transaction.Id.ToString());
-                item.SubItems.Add(transaction.AccountFromId.ToString());
-                item.SubItems.Add(transaction.AccountToId.ToString());
-                item.SubItems.Add(transaction.Status.ToString());
-                item.SubItems.Add(transaction.TransactionDate.ToString());
-                item.SubItems.Add(transaction.TransactionType.ToString());
-                item.SubItems.Add(transaction.Amount.ToString());
-                lvAccountStatement.Items.Add(item);
-            }
+            dataGridViewTransactions.AutoGenerateColumns = false;
+
+
+            dataGridViewTransactions.Columns.Add("Id", "Id");
+            dataGridViewTransactions.Columns.Add("TransactionDate", "Transaction Date");
+            dataGridViewTransactions.Columns.Add("Amount", "Amount");
+
+            dataGridViewTransactions.Columns["Id"].DataPropertyName = "Id";
+            dataGridViewTransactions.Columns["TransactionDate"].DataPropertyName = "TransactionDate";
+            dataGridViewTransactions.Columns["Amount"].DataPropertyName = "Amount";
+
+            dataGridViewTransactions.DataSource = accountStatement;
         }
 
         private void btnReceipt_Click(object sender, EventArgs e)
         {
-            var selectedTransaction = lvAccountStatement.SelectedItems[0];
+            var selectedTransaction = dataGridViewTransactions.CurrentRow;
 
-            Guid transactionId = _accountStatementController.GetTransactionId(selectedTransaction.SubItems[0].Text);
+            Guid transactionId = _accountStatementController.GetTransactionId(selectedTransaction.Cells["Id"].Value.ToString());
             if (transactionId != Guid.Empty)
             {
                 MessageBox.Show(_accountStatementController.GetReceiptText(transactionId));
