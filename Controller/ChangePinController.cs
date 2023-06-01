@@ -32,6 +32,7 @@ namespace ATMSimulator.Controller
         public void SaveNewPin(string newPin)
         {
             _card.PIN = newPin;
+            _card.UpdatedAt = DateTime.Now;
 
             _dbContext.Cards.Update(_card);
             _dbContext.SaveChanges();

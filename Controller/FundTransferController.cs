@@ -27,6 +27,8 @@ namespace ATMSimulator.Controller
 
             _account.Balance -= amount;
             accountTo.Balance += amount;
+            _account.UpdatedAt = DateTime.Now;
+            accountTo.UpdatedAt = DateTime.Now;
 
             _dbContext.Accounts.Update(_account);
             _dbContext.Accounts.Update(accountTo);

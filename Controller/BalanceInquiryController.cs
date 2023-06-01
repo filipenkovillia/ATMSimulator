@@ -1,10 +1,6 @@
 ﻿using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ATMSimulator.Model.Enum;
 
 namespace ATMSimulator.Controller
 {
@@ -26,7 +22,26 @@ namespace ATMSimulator.Controller
 
         public decimal GetAccountBalance()
         {
+            var transaction = CreateNewTransaction(TransactionStatus.Success);
+
+            _dbContext.Transactions.Add(transaction);
+            _dbContext.SaveChanges();
+
             return _account.Balance;
+        }
+
+        public Transaction CreateNewTransaction(TransactionStatus status)
+        {
+            return new Transaction()
+            {
+                Amount = null,
+                CreatedAt = DateTime.UtcNow,
+                TransactionDate = DateTime.UtcNow,
+                Status = status,
+                AccountFromId = _account.Id,
+                AccountToId = null,
+                TransactionType = TransactionType.BalanceInquiry
+            };
         }
     }
 }
