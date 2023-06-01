@@ -1,35 +1,20 @@
-﻿using ATMSimulator.Model.AppDbContext;
-using ATMSimulator.Model.Entities;
-using ATMSimulator.Session;
-using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ATMSimulator.Controller.Authorization.Interfaces;
+using ATMSimulator.Controller.Authorization;
 
 namespace ATMSimulator.Controller
 {
     public class LoginController
     {
-        private readonly AppDbContext _dbContext;
+        private readonly IUserAuthorization _userAuthorization;
 
         public LoginController() 
         {
-            _dbContext = DbContextProvider.GetDbContext();
+            _userAuthorization = new UserAuthorizationProxy(new UserAuthorization());
         }
 
-        public void AuthenticateUser(string cardNumber, string pin)
+        public bool AuthenticateUser(string cardNumber, string pin)
         {
-            var card = _dbContext.Cards
-                .FirstOrDefault(c => c.Number == cardNumber 
-                                  && c.PIN == pin);
-
-            if (card != null)
-            {
-                UserSession.Instance.CardId = card.Id;
-                UserSession.Instance.AccountId = card.AccountId;
-            }
+            return _userAuthorization.AuthorizeUser(cardNumber, pin);
         }
     }
 }

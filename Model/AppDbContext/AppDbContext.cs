@@ -14,11 +14,12 @@ namespace ATMSimulator.Model.AppDbContext
         {
         }
 
-        public DbSet<Entities.Account> Accounts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
         public DbSet<ATM> ATMs { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<AuthorizationLog> AuthorizationLogs { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -57,6 +58,11 @@ namespace ATMSimulator.Model.AppDbContext
             });
 
             modelBuilder.Entity<Card>(entity =>
+            {
+                entity.HasKey(c => c.Id);
+            });
+
+            modelBuilder.Entity<AuthorizationLog>(entity =>
             {
                 entity.HasKey(c => c.Id);
             });

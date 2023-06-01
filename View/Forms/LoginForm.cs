@@ -1,14 +1,4 @@
 ﻿using ATMSimulator.Controller;
-using ATMSimulator.Session;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ATMSimulator.View.Forms
 {
@@ -27,9 +17,9 @@ namespace ATMSimulator.View.Forms
             string cardNumber = tbCardNumber.Text;
             string pin = tbPIN.Text;
 
-            _loginController.AuthenticateUser(cardNumber, pin);
+            var authorizationResult = _loginController.AuthenticateUser(cardNumber, pin);
 
-            if (UserSession.Instance.IsLoggedIn())
+            if (authorizationResult)
             {
                 MainMenuForm mainMenuForm = new MainMenuForm();
                 mainMenuForm.Show();
