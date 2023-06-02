@@ -32,27 +32,27 @@
             this.tbRecipientCard = new System.Windows.Forms.TextBox();
             this.btnTransfer = new System.Windows.Forms.Button();
             this.lbCancel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbAmount = new System.Windows.Forms.Label();
+            this.lbCardNumber = new System.Windows.Forms.Label();
+            this.lbDollar = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbAmount
             // 
             this.tbAmount.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbAmount.Location = new System.Drawing.Point(279, 89);
+            this.tbAmount.Location = new System.Drawing.Point(379, 133);
             this.tbAmount.Name = "tbAmount";
             this.tbAmount.Size = new System.Drawing.Size(236, 38);
-            this.tbAmount.TabIndex = 15;
+            this.tbAmount.TabIndex = 1;
             this.tbAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAmount_KeyPress);
             // 
             // tbRecipientCard
             // 
             this.tbRecipientCard.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.tbRecipientCard.Location = new System.Drawing.Point(279, 133);
+            this.tbRecipientCard.Location = new System.Drawing.Point(379, 177);
             this.tbRecipientCard.Name = "tbRecipientCard";
             this.tbRecipientCard.Size = new System.Drawing.Size(236, 38);
-            this.tbRecipientCard.TabIndex = 15;
+            this.tbRecipientCard.TabIndex = 2;
             this.tbRecipientCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbRecipientCard_KeyPress);
             // 
             // btnTransfer
@@ -60,10 +60,10 @@
             this.btnTransfer.BackColor = System.Drawing.SystemColors.GrayText;
             this.btnTransfer.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnTransfer.ForeColor = System.Drawing.Color.White;
-            this.btnTransfer.Location = new System.Drawing.Point(279, 177);
+            this.btnTransfer.Location = new System.Drawing.Point(379, 221);
             this.btnTransfer.Name = "btnTransfer";
             this.btnTransfer.Size = new System.Drawing.Size(236, 53);
-            this.btnTransfer.TabIndex = 16;
+            this.btnTransfer.TabIndex = 3;
             this.btnTransfer.Text = "Transfer";
             this.btnTransfer.UseVisualStyleBackColor = false;
             this.btnTransfer.Click += new System.EventHandler(this.btnTransfer_Click);
@@ -73,59 +73,64 @@
             this.lbCancel.AutoSize = true;
             this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCancel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbCancel.Location = new System.Drawing.Point(364, 233);
+            this.lbCancel.Location = new System.Drawing.Point(464, 277);
             this.lbCancel.Name = "lbCancel";
             this.lbCancel.Size = new System.Drawing.Size(69, 28);
-            this.lbCancel.TabIndex = 17;
+            this.lbCancel.TabIndex = 4;
             this.lbCancel.Text = "Cancel";
             this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
             // 
-            // label3
+            // lbAmount
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(177, 92);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(96, 31);
-            this.label3.TabIndex = 18;
-            this.label3.Text = "Amount";
+            this.lbAmount.AutoSize = true;
+            this.lbAmount.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbAmount.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lbAmount.Location = new System.Drawing.Point(120, 136);
+            this.lbAmount.Name = "lbAmount";
+            this.lbAmount.Size = new System.Drawing.Size(96, 31);
+            this.lbAmount.TabIndex = 18;
+            this.lbAmount.Text = "Amount";
             // 
-            // label1
+            // lbCardNumber
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label1.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label1.Location = new System.Drawing.Point(20, 136);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(253, 31);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Recipient Card Number";
+            this.lbCardNumber.AutoSize = true;
+            this.lbCardNumber.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbCardNumber.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lbCardNumber.Location = new System.Drawing.Point(120, 180);
+            this.lbCardNumber.Name = "lbCardNumber";
+            this.lbCardNumber.Size = new System.Drawing.Size(253, 31);
+            this.lbCardNumber.TabIndex = 18;
+            this.lbCardNumber.Text = "Recipient Card Number";
             // 
-            // label2
+            // lbDollar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label2.Location = new System.Drawing.Point(521, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(26, 31);
-            this.label2.TabIndex = 19;
-            this.label2.Text = "$";
+            this.lbDollar.AutoSize = true;
+            this.lbDollar.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbDollar.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.lbDollar.Location = new System.Drawing.Point(621, 136);
+            this.lbDollar.Name = "lbDollar";
+            this.lbDollar.Size = new System.Drawing.Size(26, 31);
+            this.lbDollar.TabIndex = 19;
+            this.lbDollar.Text = "$";
             // 
             // FundTransferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbDollar);
+            this.Controls.Add(this.lbCardNumber);
+            this.Controls.Add(this.lbAmount);
             this.Controls.Add(this.lbCancel);
             this.Controls.Add(this.btnTransfer);
             this.Controls.Add(this.tbRecipientCard);
             this.Controls.Add(this.tbAmount);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(818, 497);
+            this.MinimumSize = new System.Drawing.Size(818, 497);
             this.Name = "FundTransferForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Fund Transfer";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -138,8 +143,8 @@
         private TextBox tbRecipientCard;
         private Button btnTransfer;
         private Label lbCancel;
-        private Label label3;
-        private Label label1;
-        private Label label2;
+        private Label lbAmount;
+        private Label lbCardNumber;
+        private Label lbDollar;
     }
 }
