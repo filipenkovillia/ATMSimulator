@@ -19,7 +19,7 @@ namespace ATMSimulator.View.Forms
         public FundTransferForm()
         {
             InitializeComponent();
-            _fundTransferController = new FundTransferController(UserSession.Instance.AccountId);
+            _fundTransferController = new FundTransferController(UserSession.Instance.CardId);
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)

@@ -13,7 +13,7 @@ namespace ATMSimulator.View.Forms
         public CashWithdrawalForm()
         {
             InitializeComponent();
-            _cashWithdrawalController = new CashWithdrawalController(UserSession.Instance.CardId, UserSession.Instance.AccountId);
+            _cashWithdrawalController = new CashWithdrawalController(UserSession.Instance.CardId);
             _withdrawalContext = new WithdrawalContext();
         }
 

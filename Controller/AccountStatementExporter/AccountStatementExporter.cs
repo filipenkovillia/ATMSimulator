@@ -24,11 +24,11 @@ namespace ATMSimulator.Controller.AccountStatementExporter
                 .FirstOrDefault(c => c.Id == cardId);
 
             var transactions = (from tr in _dbContext.Transactions
-                                join accFrom in _dbContext.Accounts on tr.AccountFromId equals accFrom.Id into accFromJoin
-                                from accFromResult in accFromJoin.DefaultIfEmpty()
-                                join accTo in _dbContext.Accounts on tr.AccountToId equals accTo.Id into accToJoin
-                                from accToResult in accToJoin.DefaultIfEmpty()
-                                where tr.AccountFromId == card.AccountId || tr.AccountToId == card.AccountId
+                                join cardFrom in _dbContext.Cards on tr.SenderCardId equals cardFrom.Id into cardFromJoin
+                                from accFromResult in cardFromJoin.DefaultIfEmpty()
+                                join cardTo in _dbContext.Cards on tr.ReceiverCardId equals cardTo.Id into cardToJoin
+                                from accToResult in cardToJoin.DefaultIfEmpty()
+                                where tr.SenderCardId == card.Id || tr.ReceiverCardId == card.Id
                                 orderby tr.TransactionDate
                                 select new TransactionDTO
                                 {

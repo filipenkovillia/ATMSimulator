@@ -11,27 +11,27 @@ namespace ATMSimulator.Controller
     public class FundTransferController
     {
         private readonly AppDbContext _dbContext;
-        private readonly Account _account;
+        private readonly Card _card;
 
-        public FundTransferController(Guid accountId)
+        public FundTransferController(Guid cardId)
         {
             _dbContext = DbContextProvider.GetDbContext();
-            _account = GetAccountById(accountId);
+            _card = GetCardById(cardId);
         }
 
         public void TransferFunds(string cardNumberTo, decimal amount)
         {
             var cardTo = GetCardByNumber(cardNumberTo);
-            var accountTo = GetAccountById(cardTo.AccountId);
-            var transaction = CreateNewTransaction(_account.Id, accountTo.Id, amount);
 
-            _account.Balance -= amount;
-            accountTo.Balance += amount;
-            _account.UpdatedAt = DateTime.Now;
-            accountTo.UpdatedAt = DateTime.Now;
+            var transaction = CreateNewTransaction(_card.Id, cardTo.Id, amount);
 
-            _dbContext.Accounts.Update(_account);
-            _dbContext.Accounts.Update(accountTo);
+            _card.Balance -= amount;
+            cardTo.Balance += amount;
+            _card.UpdatedAt = DateTime.Now;
+            cardTo.UpdatedAt = DateTime.Now;
+
+            _dbContext.Cards.Update(_card);
+            _dbContext.Cards.Update(cardTo);
             _dbContext.Transactions.Add(transaction);
             _dbContext.SaveChanges();
         }
@@ -41,9 +41,9 @@ namespace ATMSimulator.Controller
             return _dbContext.Cards.FirstOrDefault(x => x.Number == cardNumber);
         }
 
-        private Account GetAccountById(Guid accountId)
+        private Card GetCardById(Guid cardId)
         {
-            return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
+            return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
         private Transaction CreateNewTransaction(Guid accountFromId, Guid accountToId, decimal amount)
@@ -52,8 +52,8 @@ namespace ATMSimulator.Controller
             {
                 CreatedAt = DateTime.Now,
                 TransactionDate = DateTime.Now,
-                AccountFromId = accountFromId,
-                AccountToId = accountToId,
+                SenderCardId = accountFromId,
+                ReceiverCardId = accountToId,
                 Amount = amount,
                 Status = Model.Enum.TransactionStatus.Success,
                 TransactionType = Model.Enum.TransactionType.Transfer

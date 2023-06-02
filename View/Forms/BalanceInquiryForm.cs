@@ -20,12 +20,12 @@ namespace ATMSimulator.View.Forms
         public BalanceInquiryForm()
         {
             InitializeComponent();
-            _balanceInquiryController = new BalanceInquiryController(UserSession.Instance.AccountId);
+            _balanceInquiryController = new BalanceInquiryController(UserSession.Instance.CardId);
         }
 
         private void BalanceInquiryForm_Load(object sender, EventArgs e)
         {
-            decimal accountBalance = _balanceInquiryController.GetAccountBalance();
+            decimal accountBalance = _balanceInquiryController.GetCardBalance();
 
             lbBalance.Text = $"Account Balance: ${accountBalance}";
         }

@@ -7,27 +7,27 @@ namespace ATMSimulator.Controller
     public class BalanceInquiryController
     {
         private readonly AppDbContext _dbContext;
-        private readonly Account _account;
+        private readonly Card _card;
 
-        public BalanceInquiryController(Guid accountId) 
+        public BalanceInquiryController(Guid cardId) 
         { 
             _dbContext = DbContextProvider.GetDbContext();
-            _account = GetAccountById(accountId);
+            _card = GetCardById(cardId);
         }
 
-        private Account GetAccountById(Guid accountId)
+        private Card GetCardById(Guid cardId)
         {
-            return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
+            return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
-        public decimal GetAccountBalance()
+        public decimal GetCardBalance()
         {
             var transaction = CreateNewTransaction(TransactionStatus.Success);
 
             _dbContext.Transactions.Add(transaction);
             _dbContext.SaveChanges();
 
-            return _account.Balance;
+            return _card.Balance;
         }
 
         public Transaction CreateNewTransaction(TransactionStatus status)
@@ -38,8 +38,8 @@ namespace ATMSimulator.Controller
                 CreatedAt = DateTime.UtcNow,
                 TransactionDate = DateTime.UtcNow,
                 Status = status,
-                AccountFromId = _account.Id,
-                AccountToId = null,
+                SenderCardId = _card.Id,
+                ReceiverCardId = null,
                 TransactionType = TransactionType.BalanceInquiry
             };
         }

@@ -5,20 +5,7 @@
         private static UserSession _instance;
         private static readonly object _lock = new object();
 
-        private Guid _accountId;
         private Guid _cardId;
-
-        public Guid AccountId
-        {
-            get { return _accountId; }
-            set
-            {
-                if (!IsLoggedIn())
-                {
-                    _accountId = value;
-                }
-            }
-        }
 
         public Guid CardId
         {
@@ -34,7 +21,7 @@
 
         private UserSession()
         {
-            // Private constructor to prevent external instantiation
+            
         }
 
         public static UserSession Instance
@@ -57,21 +44,18 @@
 
         public void Logout()
         {
-            _accountId = Guid.Empty;
             _cardId = Guid.Empty;
         }
 
         public bool IsLoggedIn()
         {
-            return _accountId != Guid.Empty 
-                && _cardId != Guid.Empty;
+            return _cardId != Guid.Empty;
         }
 
-        public void SetUserParameters(Guid accountId, Guid cardId)
+        public void SetUserParameters(Guid cardId)
         {
-            if (!IsLoggedIn()) // Only set if not already logged in
+            if (!IsLoggedIn())
             {
-                _accountId = accountId;
                 _cardId = cardId;
             }
         }

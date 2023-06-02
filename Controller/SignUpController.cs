@@ -1,10 +1,5 @@
 ﻿using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMSimulator.Controller
 {
@@ -19,18 +14,15 @@ namespace ATMSimulator.Controller
 
         public bool TrySignUp(string firstName, string lastName, string phoneNumber)
         {
+            // TODO: return generated card number and PIN
             if (ValidateInputData(firstName, lastName, phoneNumber))
             {
                 var customer = CreateNewCustomer(firstName, lastName, phoneNumber);
-                var account = CreateNewAccount(customer);
-                var card = CreateNewCard(customer, account);
+                var card = CreateNewCard(customer);
 
                 _dbContext.Customers.Add(customer);
-
-                account.CustomerId = customer.Id;
-                _dbContext.Accounts.Add(account);
                 
-                card.AccountId = account.Id;
+                card.CustomerId = customer.Id;
                 _dbContext.Cards.Add(card);
 
                 _dbContext.SaveChanges();
@@ -60,44 +52,18 @@ namespace ATMSimulator.Controller
             };
         }
 
-        private Account CreateNewAccount(Customer customer)
-        {
-            return new Account()
-            {
-                CreatedAt = DateTime.Now,
-                AccountType = Model.Enum.AccountType.Unknown,
-                Balance = 0,
-                CustomerId = customer.Id,
-                Number = GenerateAccountNumber(),
-            };
-        }
-
-        private Card CreateNewCard(Customer customer, Account account)
+        private Card CreateNewCard(Customer customer)
         {
             return new Card()
             {
                 CreatedAt = DateTime.Now,
-                AccountId = account.Id,
+                CustomerId = customer.Id,
                 CardHolderName = $"{customer.FirstName} {customer.LastName}",
                 CardType = Model.Enum.CardType.None,
                 ExpireDate = DateTime.Now.AddYears(3),
                 Number = GenerateCardNumber(),
                 PIN = GenerateCardPIN(),
             };
-        }
-
-        private string GenerateAccountNumber()
-        {
-            var lastAccount = _dbContext.Accounts.OrderBy(x => x.CreatedAt).LastOrDefault();
-            if (lastAccount != null)
-            {
-                var accountNumber = Convert.ToInt32(lastAccount.Number);
-                return (accountNumber + 1).ToString();
-            }
-            else
-            {
-                return "1";
-            }
         }
 
         private string GenerateCardNumber()

@@ -14,8 +14,6 @@ namespace ATMSimulator.Model.AppDbContext
         {
         }
 
-        public DbSet<Account> Accounts { get; set; }
-        public DbSet<ATM> ATMs { get; set; }
         public DbSet<Card> Cards { get; set; }
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
@@ -37,19 +35,9 @@ namespace ATMSimulator.Model.AppDbContext
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Account>(entity =>
-            {
-                entity.HasKey(a => a.Id);
-            });
-
             modelBuilder.Entity<Transaction>(entity =>
             {
                 entity.HasKey(t => t.Id);
-            });
-
-            modelBuilder.Entity<ATM>(entity =>
-            {
-                entity.HasKey(a => a.Id);
             });
 
             modelBuilder.Entity<Customer>(entity =>

@@ -8,19 +8,12 @@ namespace ATMSimulator.Controller
     public class AccountStatementController
     {
         private readonly AppDbContext _dbContext;
-        private readonly Account _account;
         private readonly Card _card;
 
-        public AccountStatementController(Guid accountId, Guid cardId) 
+        public AccountStatementController(Guid cardId) 
         {
             _dbContext = DbContextProvider.GetDbContext();
-            _account = GetAccountById(accountId);
             _card = GetCardByID(cardId);
-        }
-
-        private Account GetAccountById(Guid accountId)
-        {
-            return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
         }
 
         private Card GetCardByID(Guid cardId)
@@ -31,8 +24,8 @@ namespace ATMSimulator.Controller
         public List<Transaction> GetAccountTransactions()
         {
             return _dbContext.Transactions
-                .Where(x => x.AccountToId == _account.Id
-                         || x.AccountFromId == _account.Id)
+                .Where(x => x.ReceiverCardId == _card.Id
+                         || x.SenderCardId == _card.Id)
                 .ToList();
         }
 

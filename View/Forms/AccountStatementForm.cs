@@ -11,7 +11,7 @@ namespace ATMSimulator.View.Forms
         public AccountStatementForm()
         {
             InitializeComponent();
-            _accountStatementController = new AccountStatementController(UserSession.Instance.AccountId, UserSession.Instance.CardId);
+            _accountStatementController = new AccountStatementController(UserSession.Instance.CardId);
         }
 
         private void lbCancel_Click(object sender, EventArgs e)

@@ -13,8 +13,8 @@ namespace ATMSimulator.Controller.ReceiptFactory.Receipts
         public override string Print()
         {
             return $"Transfer Receipt\n" +
-                $"Sender Account: {_transaction.AccountFromId}\n" +
-                $"Receiver Account: {_transaction.AccountToId}\n" +
+                $"Sender Account: {_transaction.SenderCardId}\n" +
+                $"Receiver Account: {_transaction.ReceiverCardId}\n" +
                 $"Amount: {_transaction.Amount}\n" +
                 $"Status: {Enum.GetName(_transaction.Status)}\n" +
                 $"Transaction Date: {_transaction.TransactionDate}";

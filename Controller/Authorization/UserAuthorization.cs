@@ -22,7 +22,6 @@ namespace ATMSimulator.Controller.Authorization
             if (card != null)
             {
                 UserSession.Instance.CardId = card.Id;
-                UserSession.Instance.AccountId = card.AccountId;
 
                 return true;
             }
