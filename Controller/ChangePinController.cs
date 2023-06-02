@@ -62,7 +62,7 @@ namespace ATMSimulator.Controller
             {
                 sb.AppendLine("New PIN cannot be the same as current PIN.");
             }
-            if(currentPIN != confirmNewPIN)
+            if (newPIN != confirmNewPIN)
             {
                 sb.AppendLine("Failed to confirm new PIN.");
             }

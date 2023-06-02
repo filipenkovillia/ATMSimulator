@@ -32,6 +32,7 @@ namespace ATMSimulator.View.Forms
 
             tbCurrentPIN.Text = string.Empty;
             tbNewPIN.Text = string.Empty;
+            tbConfirmNewPIN.Text = string.Empty;
         }
 
         private void lbCancel_Click(object sender, EventArgs e)
