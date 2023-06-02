@@ -1,6 +1,7 @@
 ﻿using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.DTO;
 using ATMSimulator.Model.Entities;
+using ATMSimulator.Model.Enum;
 using System.Text;
 
 namespace ATMSimulator.Controller
@@ -24,14 +25,22 @@ namespace ATMSimulator.Controller
             {
                 var cardTo = GetCardByNumber(cardNumberTo);
 
-                var transaction = CreateNewTransaction(_card.Id, cardTo.Id, amount);
+                var transactionType = _card.Number == cardTo.Number
+                    ? TransactionType.Deposit
+                    : TransactionType.Transfer;
 
-                _card.Balance -= amount;
+                var transaction = CreateNewTransaction(_card.Id, cardTo.Id, amount, transactionType);
+
+                if (transactionType == TransactionType.Transfer)
+                {
+                    _card.Balance -= amount;
+                    _card.UpdatedAt = DateTime.Now;
+                    _dbContext.Cards.Update(_card);
+                }
+                
                 cardTo.Balance += amount;
-                _card.UpdatedAt = DateTime.Now;
                 cardTo.UpdatedAt = DateTime.Now;
 
-                _dbContext.Cards.Update(_card);
                 _dbContext.Cards.Update(cardTo);
                 _dbContext.Transactions.Add(transaction);
                 _dbContext.SaveChanges();
@@ -73,11 +82,14 @@ namespace ATMSimulator.Controller
                 sb.AppendLine($"Recipient with Card Number = {cardNumberTo} does not exist.");
             }
 
-            var isEnoughBalance = _card.Balance >= amount;
-
-            if (!isEnoughBalance)
+            if (_card.Number != cardNumberTo)
             {
-                sb.AppendLine($"Card balance is not enough to make transfer for {amount}$.");
+                var isEnoughBalance = _card.Balance >= amount;
+
+                if (!isEnoughBalance)
+                {
+                    sb.AppendLine($"Card balance is not enough to make transfer for {amount}$.");
+                }
             }
 
             return sb;
@@ -93,17 +105,20 @@ namespace ATMSimulator.Controller
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
-        private Transaction CreateNewTransaction(int accountFromId, int accountToId, decimal amount)
+        private Transaction CreateNewTransaction(int accountFromId, int accountToId, 
+            decimal amount, TransactionType transactionType)
         {
             return new Transaction()
             {
                 CreatedAt = DateTime.Now,
                 TransactionDate = DateTime.Now,
-                SenderCardId = accountFromId,
+                SenderCardId = transactionType == TransactionType.Transfer 
+                    ? accountFromId
+                    : null,
                 ReceiverCardId = accountToId,
                 Amount = amount,
-                Status = Model.Enum.TransactionStatus.Success,
-                TransactionType = Model.Enum.TransactionType.Transfer
+                Status = TransactionStatus.Success,
+                TransactionType = transactionType
             };
         }
     }
