@@ -10,13 +10,13 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public AccountStatementController(Guid cardId) 
+        public AccountStatementController(int cardId) 
         {
             _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardByID(cardId);
         }
 
-        private Card GetCardByID(Guid cardId)
+        private Card GetCardByID(int cardId)
         {
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
@@ -29,20 +29,20 @@ namespace ATMSimulator.Controller
                 .ToList();
         }
 
-        public Guid GetTransactionId(string transactionId)
+        public int GetTransactionId(string transactionId)
         {
-            Guid result = Guid.Empty;
-            var isSuccess = Guid.TryParse(transactionId, out result);
+            int result = 0;
+            var isSuccess = int.TryParse(transactionId, out result);
             return result;
         }
 
-        public Transaction? GetTransactionById(Guid transactionId) 
+        public Transaction? GetTransactionById(int transactionId) 
         {
             return _dbContext.Transactions
                 .FirstOrDefault(x => x.Id == transactionId);
         }
 
-        public string GetReceiptText(Guid transactionId)
+        public string GetReceiptText(int transactionId)
         {
             var transaction = GetTransactionById(transactionId);
 

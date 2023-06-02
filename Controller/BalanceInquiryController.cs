@@ -9,13 +9,13 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public BalanceInquiryController(Guid cardId) 
+        public BalanceInquiryController(int cardId) 
         { 
             _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
         }
 
-        private Card GetCardById(Guid cardId)
+        private Card GetCardById(int cardId)
         {
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }

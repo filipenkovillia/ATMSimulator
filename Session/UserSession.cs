@@ -5,9 +5,9 @@
         private static UserSession _instance;
         private static readonly object _lock = new object();
 
-        private Guid _cardId;
+        private int _cardId;
 
-        public Guid CardId
+        public int CardId
         {
             get { return _cardId; }
             set
@@ -44,15 +44,15 @@
 
         public void Logout()
         {
-            _cardId = Guid.Empty;
+            _cardId = 0;
         }
 
         public bool IsLoggedIn()
         {
-            return _cardId != Guid.Empty;
+            return _cardId != 0;
         }
 
-        public void SetUserParameters(Guid cardId)
+        public void SetUserParameters(int cardId)
         {
             if (!IsLoggedIn())
             {

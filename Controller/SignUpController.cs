@@ -21,10 +21,10 @@ namespace ATMSimulator.Controller
                 var card = CreateNewCard(customer);
 
                 _dbContext.Customers.Add(customer);
-                
+                _dbContext.SaveChanges();
+
                 card.CustomerId = customer.Id;
                 _dbContext.Cards.Add(card);
-
                 _dbContext.SaveChanges();
 
                 return true;

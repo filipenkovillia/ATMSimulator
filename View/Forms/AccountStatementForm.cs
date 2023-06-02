@@ -40,8 +40,8 @@ namespace ATMSimulator.View.Forms
         {
             var selectedTransaction = dataGridViewTransactions.CurrentRow;
 
-            Guid transactionId = _accountStatementController.GetTransactionId(selectedTransaction.Cells["Id"].Value.ToString());
-            if (transactionId != Guid.Empty)
+            int transactionId = _accountStatementController.GetTransactionId(selectedTransaction.Cells["Id"].Value.ToString());
+            if (transactionId != 0)
             {
                 MessageBox.Show(_accountStatementController.GetReceiptText(transactionId));
             }

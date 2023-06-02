@@ -25,8 +25,8 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 
             foreach (var transaction in transactions)
             {
-                table.AddCell(transaction.SenderAccountNumber);
-                table.AddCell(transaction.ReceiverAccountNumber);
+                table.AddCell(transaction.SenderCardNumber);
+                table.AddCell(transaction.ReceiverCardNumber);
                 table.AddCell(transaction.Amount.ToString());
                 table.AddCell(transaction.TransactionType.ToString());
                 table.AddCell(transaction.TransactionDate.ToString());

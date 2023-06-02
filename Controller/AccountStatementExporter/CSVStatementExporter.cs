@@ -13,7 +13,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 
                 foreach (var transaction in transactions)
                 {
-                    writer.WriteLine($"{transaction.SenderAccountNumber},{transaction.ReceiverAccountNumber}," +
+                    writer.WriteLine($"{transaction.SenderCardNumber},{transaction.ReceiverCardNumber}," +
                         $"{transaction.Amount},{transaction.TransactionType},{transaction.TransactionDate}," +
                         $"{transaction.Status}");
                 }

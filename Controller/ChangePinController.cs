@@ -1,10 +1,5 @@
 ﻿using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMSimulator.Controller
 {
@@ -13,13 +8,13 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public ChangePinController(Guid cardId) 
+        public ChangePinController(int cardId) 
         {
             _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
         }
 
-        private Card GetCardById(Guid cardId)
+        private Card GetCardById(int cardId)
         {
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }

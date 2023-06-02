@@ -21,8 +21,8 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 
                 for (int i = 0; i < transactions.Count; i++)
                 {
-                    worksheet.Cells[i + 2, 1].Value = transactions[i].SenderAccountNumber;
-                    worksheet.Cells[i + 2, 2].Value = transactions[i].ReceiverAccountNumber;
+                    worksheet.Cells[i + 2, 1].Value = transactions[i].SenderCardNumber;
+                    worksheet.Cells[i + 2, 2].Value = transactions[i].ReceiverCardNumber;
                     worksheet.Cells[i + 2, 3].Value = transactions[i].Amount;
                     worksheet.Cells[i + 2, 4].Value = transactions[i].TransactionType;
                     worksheet.Cells[i + 2, 5].Value = transactions[i].TransactionDate;

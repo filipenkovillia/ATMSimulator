@@ -1,10 +1,5 @@
 ﻿using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATMSimulator.Controller
 {
@@ -13,7 +8,7 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public FundTransferController(Guid cardId)
+        public FundTransferController(int cardId)
         {
             _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
@@ -41,12 +36,12 @@ namespace ATMSimulator.Controller
             return _dbContext.Cards.FirstOrDefault(x => x.Number == cardNumber);
         }
 
-        private Card GetCardById(Guid cardId)
+        private Card GetCardById(int cardId)
         {
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
-        private Transaction CreateNewTransaction(Guid accountFromId, Guid accountToId, decimal amount)
+        private Transaction CreateNewTransaction(int accountFromId, int accountToId, decimal amount)
         {
             return new Transaction()
             {

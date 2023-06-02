@@ -4,7 +4,7 @@ namespace ATMSimulator.Model.Entities
 {
     public class Card : BaseEntity
     {
-        public Guid CustomerId { get; set; }
+        public int CustomerId { get; set; }
         public string Number { get; set; }
         public string PIN { get; set; }
         public DateTime ExpireDate { get; set; }

@@ -9,7 +9,7 @@ namespace ATMSimulator.Controller
         private readonly AppDbContext _dbContext;
         private readonly Card _card;
 
-        public CashWithdrawalController(Guid cardId)
+        public CashWithdrawalController(int cardId)
         {
             _dbContext = DbContextProvider.GetDbContext();
             _card = GetCardById(cardId);
@@ -51,7 +51,7 @@ namespace ATMSimulator.Controller
             return amount % 10 == 0;
         }
 
-        private Card GetCardById(Guid cardId)
+        private Card GetCardById(int cardId)
         {
             return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
