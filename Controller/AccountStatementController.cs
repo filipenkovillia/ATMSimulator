@@ -1,5 +1,7 @@
-﻿using ATMSimulator.Model.AppDbContext;
+﻿using ATMSimulator.Controller.AccountStatementExporter;
+using ATMSimulator.Model.AppDbContext;
 using ATMSimulator.Model.Entities;
+using ATMSimulator.Model.Enum;
 
 namespace ATMSimulator.Controller
 {
@@ -7,16 +9,23 @@ namespace ATMSimulator.Controller
     {
         private readonly AppDbContext _dbContext;
         private readonly Account _account;
+        private readonly Card _card;
 
-        public AccountStatementController(Guid accountId) 
+        public AccountStatementController(Guid accountId, Guid cardId) 
         {
             _dbContext = DbContextProvider.GetDbContext();
             _account = GetAccountById(accountId);
+            _card = GetCardByID(cardId);
         }
 
         private Account GetAccountById(Guid accountId)
         {
             return _dbContext.Accounts.FirstOrDefault(x => x.Id == accountId);
+        }
+
+        private Card GetCardByID(Guid cardId)
+        {
+            return _dbContext.Cards.FirstOrDefault(x => x.Id == cardId);
         }
 
         public List<Transaction> GetAccountTransactions()
@@ -53,6 +62,28 @@ namespace ATMSimulator.Controller
             {
                 return $"Failed to print receipt.";
             }    
+        }
+
+        public void ExportAccountStatementToFile(ExportFormat format)
+        {
+            AccountStatementExporter.AccountStatementExporter exporter;
+
+            switch (format)
+            {
+                case ExportFormat.PDF:
+                    exporter = new PDFStatementExporter();
+                    break;
+                case ExportFormat.XLSX:
+                    exporter = new ExcelStatementExporter();
+                    break;
+                case ExportFormat.CSV:
+                    exporter= new CSVStatementExporter();
+                    break;
+                default:
+                    throw new Exception("No format for export selected.");
+            }
+
+            exporter.Export(_card.Id);
         }
     }
 }

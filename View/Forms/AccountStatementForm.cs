@@ -1,4 +1,5 @@
 ﻿using ATMSimulator.Controller;
+using ATMSimulator.Model.Enum;
 using ATMSimulator.Session;
 
 namespace ATMSimulator.View.Forms
@@ -10,7 +11,7 @@ namespace ATMSimulator.View.Forms
         public AccountStatementForm()
         {
             InitializeComponent();
-            _accountStatementController = new AccountStatementController(UserSession.Instance.AccountId);
+            _accountStatementController = new AccountStatementController(UserSession.Instance.AccountId, UserSession.Instance.CardId);
         }
 
         private void lbCancel_Click(object sender, EventArgs e)
@@ -26,12 +27,9 @@ namespace ATMSimulator.View.Forms
 
             dataGridViewTransactions.AutoGenerateColumns = false;
 
-
-            dataGridViewTransactions.Columns.Add("Id", "Id");
             dataGridViewTransactions.Columns.Add("TransactionDate", "Transaction Date");
             dataGridViewTransactions.Columns.Add("Amount", "Amount");
 
-            dataGridViewTransactions.Columns["Id"].DataPropertyName = "Id";
             dataGridViewTransactions.Columns["TransactionDate"].DataPropertyName = "TransactionDate";
             dataGridViewTransactions.Columns["Amount"].DataPropertyName = "Amount";
 
@@ -47,6 +45,21 @@ namespace ATMSimulator.View.Forms
             {
                 MessageBox.Show(_accountStatementController.GetReceiptText(transactionId));
             }
+        }
+
+        private void btnExportPdf_Click(object sender, EventArgs e)
+        {
+            _accountStatementController.ExportAccountStatementToFile(ExportFormat.PDF);
+        }
+
+        private void btnExportXlsx_Click(object sender, EventArgs e)
+        {
+            _accountStatementController.ExportAccountStatementToFile(ExportFormat.XLSX);
+        }
+
+        private void btnExportCsv_Click(object sender, EventArgs e)
+        {
+            _accountStatementController.ExportAccountStatementToFile(ExportFormat.CSV);
         }
     }
 }
