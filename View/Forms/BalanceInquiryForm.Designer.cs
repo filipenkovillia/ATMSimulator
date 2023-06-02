@@ -39,18 +39,18 @@
             this.lbBalance.ForeColor = System.Drawing.SystemColors.GrayText;
             this.lbBalance.Location = new System.Drawing.Point(305, 83);
             this.lbBalance.Name = "lbBalance";
-            this.lbBalance.Size = new System.Drawing.Size(119, 41);
+            this.lbBalance.Size = new System.Drawing.Size(196, 41);
             this.lbBalance.TabIndex = 2;
-            this.lbBalance.Text = "Balance";
+            this.lbBalance.Text = "Card Balance:";
             // 
             // lbBack
             // 
             this.lbBack.AutoSize = true;
-            this.lbBack.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbBack.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbBack.Location = new System.Drawing.Point(305, 147);
+            this.lbBack.Location = new System.Drawing.Point(305, 139);
             this.lbBack.Name = "lbBack";
-            this.lbBack.Size = new System.Drawing.Size(79, 41);
+            this.lbBack.Size = new System.Drawing.Size(52, 28);
             this.lbBack.TabIndex = 2;
             this.lbBack.Text = "Back";
             this.lbBack.Click += new System.EventHandler(this.lbBack_Click);
@@ -63,7 +63,7 @@
             this.Controls.Add(this.lbBack);
             this.Controls.Add(this.lbBalance);
             this.Name = "BalanceInquiryForm";
-            this.Text = "BalanceInquiryForm";
+            this.Text = "Balance Inquiry";
             this.Load += new System.EventHandler(this.BalanceInquiryForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

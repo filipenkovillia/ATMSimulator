@@ -34,6 +34,7 @@
             this.lbCancel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // tbAmount
@@ -43,6 +44,7 @@
             this.tbAmount.Name = "tbAmount";
             this.tbAmount.Size = new System.Drawing.Size(236, 38);
             this.tbAmount.TabIndex = 15;
+            this.tbAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAmount_KeyPress);
             // 
             // tbRecipientCard
             // 
@@ -51,6 +53,7 @@
             this.tbRecipientCard.Name = "tbRecipientCard";
             this.tbRecipientCard.Size = new System.Drawing.Size(236, 38);
             this.tbRecipientCard.TabIndex = 15;
+            this.tbRecipientCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbRecipientCard_KeyPress);
             // 
             // btnTransfer
             // 
@@ -68,11 +71,11 @@
             // lbCancel
             // 
             this.lbCancel.AutoSize = true;
-            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCancel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbCancel.Location = new System.Drawing.Point(335, 233);
+            this.lbCancel.Location = new System.Drawing.Point(364, 233);
             this.lbCancel.Name = "lbCancel";
-            this.lbCancel.Size = new System.Drawing.Size(106, 41);
+            this.lbCancel.Size = new System.Drawing.Size(69, 28);
             this.lbCancel.TabIndex = 17;
             this.lbCancel.Text = "Cancel";
             this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
@@ -82,7 +85,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.label3.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.label3.Location = new System.Drawing.Point(149, 92);
+            this.label3.Location = new System.Drawing.Point(177, 92);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 31);
             this.label3.TabIndex = 18;
@@ -99,11 +102,23 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Recipient Card Number";
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label2.ForeColor = System.Drawing.SystemColors.GrayText;
+            this.label2.Location = new System.Drawing.Point(521, 92);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(26, 31);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "$";
+            // 
             // FundTransferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbCancel);
@@ -111,7 +126,7 @@
             this.Controls.Add(this.tbRecipientCard);
             this.Controls.Add(this.tbAmount);
             this.Name = "FundTransferForm";
-            this.Text = "FundTransferForm";
+            this.Text = "Fund Transfer";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -125,5 +140,6 @@
         private Label lbCancel;
         private Label label3;
         private Label label1;
+        private Label label2;
     }
 }

@@ -1,14 +1,5 @@
 ﻿using ATMSimulator.Controller;
 using ATMSimulator.Session;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ATMSimulator.View.Forms
 {
@@ -26,16 +17,17 @@ namespace ATMSimulator.View.Forms
         {
             string currentPIN = tbCurrentPIN.Text;
             string newPIN = tbNewPIN.Text;
+            string confirmNewPIN = tbConfirmNewPIN.Text;
 
-            // TODO: additional checks
-            if (_changePinController.IsCurrentPinCorrect(currentPIN))
+            var changePINResult = _changePinController.ChangePIN(currentPIN, newPIN, confirmNewPIN);
+
+            if (changePINResult.IsSuccess)
             {
-                _changePinController.SaveNewPin(newPIN);
                 MessageBox.Show("PIN changed successfully!");
             }
             else
             {
-                MessageBox.Show("Failed to change PIN. Please try again.");
+                MessageBox.Show($"Failed to change PIN. Please try again.\n{changePINResult.Message}");
             }
 
             tbCurrentPIN.Text = string.Empty;
@@ -47,6 +39,30 @@ namespace ATMSimulator.View.Forms
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
             this.Close();
+        }
+
+        private void tbCurrentPIN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbNewPIN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbConfirmNewPIN_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

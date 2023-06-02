@@ -125,7 +125,7 @@
             this.Controls.Add(this.btnCashWithdrawal);
             this.Controls.Add(this.btnBalanceInquiry);
             this.Name = "MainMenuForm";
-            this.Text = "MainMenuForm";
+            this.Text = "Main Menu";
             this.ResumeLayout(false);
             this.PerformLayout();
 

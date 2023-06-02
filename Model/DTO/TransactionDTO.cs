@@ -2,7 +2,7 @@
 
 namespace ATMSimulator.Model.DTO
 {
-    public class TransactionDTO
+    public class TransactionDto
     {
         public int Id { get; set; }
         public DateTime CreatedAt { get; set; }

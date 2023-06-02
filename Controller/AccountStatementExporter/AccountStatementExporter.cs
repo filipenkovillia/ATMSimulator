@@ -18,7 +18,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
             SaveToFile(transactions);
         }
 
-        protected List<TransactionDTO> PrepareData(int cardId)
+        protected List<TransactionDto> PrepareData(int cardId)
         {
             var card = _dbContext.Cards
                 .FirstOrDefault(c => c.Id == cardId);
@@ -30,7 +30,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
                                 from cardToResult in cardToJoin.DefaultIfEmpty()
                                 where tr.SenderCardId == card.Id || tr.ReceiverCardId == card.Id
                                 orderby tr.TransactionDate
-                                select new TransactionDTO
+                                select new TransactionDto
                                 {
                                     Id = tr.Id,
                                     CreatedAt = tr.CreatedAt,
@@ -47,6 +47,6 @@ namespace ATMSimulator.Controller.AccountStatementExporter
             return transactions;
         }
 
-        protected abstract void SaveToFile(List<TransactionDTO> transactions);
+        protected abstract void SaveToFile(List<TransactionDto> transactions);
     }
 }

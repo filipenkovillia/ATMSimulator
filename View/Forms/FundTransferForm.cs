@@ -1,14 +1,5 @@
 ﻿using ATMSimulator.Controller;
 using ATMSimulator.Session;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ATMSimulator.View.Forms
 {
@@ -27,8 +18,15 @@ namespace ATMSimulator.View.Forms
             string recipientCard = tbRecipientCard.Text;
             decimal transferAmount = decimal.Parse(tbAmount.Text); 
             
-            // TODO: add checks for incorrect transaction
-            _fundTransferController.TransferFunds(recipientCard, transferAmount);
+            var transferResult = _fundTransferController.TransferFunds(recipientCard, transferAmount);
+            if (transferResult.IsSuccess)
+            {
+                MessageBox.Show(transferResult.Message);
+            }
+            else
+            {
+                MessageBox.Show($"Failed to transfer funds. Please, try again.\n{transferResult.Message}");
+            }
 
             tbRecipientCard.Text = string.Empty;
             tbAmount.Text = string.Empty;
@@ -39,6 +37,22 @@ namespace ATMSimulator.View.Forms
             MainMenuForm mainMenuForm = new MainMenuForm();
             mainMenuForm.Show();
             this.Close();
+        }
+
+        private void tbAmount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tbRecipientCard_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

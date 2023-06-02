@@ -5,7 +5,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 {
     public class ExcelStatementExporter : AccountStatementExporter
     {
-        protected override void SaveToFile(List<TransactionDTO> transactions)
+        protected override void SaveToFile(List<TransactionDto> transactions)
         {
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             using (ExcelPackage package = new ExcelPackage())

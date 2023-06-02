@@ -17,7 +17,7 @@ namespace ATMSimulator.Controller.WithdrawalStrategy.Context
             return _strategy?.GetWithdrawAmountFromString(input) ?? 0;
         }
 
-        public WithdrawResultDto Withdraw(CashWithdrawalController controller, decimal amount)
+        public FormActionResultDto Withdraw(CashWithdrawalController controller, decimal amount)
         {
             if (controller.CanWithdrawAmount(amount))
             {
@@ -27,7 +27,7 @@ namespace ATMSimulator.Controller.WithdrawalStrategy.Context
             {
                 controller.CreateNewTransaction(amount, Model.Enum.TransactionStatus.Failed);
 
-                return new WithdrawResultDto
+                return new FormActionResultDto
                 {
                     IsSuccess = false,
                     Message = "Not enough balance on account."

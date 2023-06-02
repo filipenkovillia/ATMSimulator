@@ -94,7 +94,7 @@
             this.lbCancel.AutoSize = true;
             this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCancel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbCancel.Location = new System.Drawing.Point(441, 414);
+            this.lbCancel.Location = new System.Drawing.Point(456, 403);
             this.lbCancel.Name = "lbCancel";
             this.lbCancel.Size = new System.Drawing.Size(69, 28);
             this.lbCancel.TabIndex = 12;
@@ -119,6 +119,7 @@
             this.tbPhoneNumber.Name = "tbPhoneNumber";
             this.tbPhoneNumber.Size = new System.Drawing.Size(320, 38);
             this.tbPhoneNumber.TabIndex = 13;
+            this.tbPhoneNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPhoneNumber_KeyPress);
             // 
             // SignUpForm
             // 
@@ -134,7 +135,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbCancel);
             this.Name = "SignUpForm";
-            this.Text = "SignUpForm";
+            this.Text = "Sign Up";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -10,13 +10,13 @@ namespace ATMSimulator.Controller.WithdrawalStrategy.Strategies
             return decimal.Parse(input);
         }
 
-        public WithdrawResultDto Withdraw(CashWithdrawalController controller, decimal amount)
+        public FormActionResultDto Withdraw(CashWithdrawalController controller, decimal amount)
         {
             if (!controller.CanDivideAmountByBanknotes(amount))
             {
                 controller.CreateNewTransaction(amount, Model.Enum.TransactionStatus.Failed);
 
-                return new WithdrawResultDto
+                return new FormActionResultDto
                 {
                     IsSuccess = false,
                     Message = "Withdraw amount must be dividable by 10."
@@ -26,7 +26,7 @@ namespace ATMSimulator.Controller.WithdrawalStrategy.Strategies
             {
                 controller.WithdrawCash(amount);
 
-                return new WithdrawResultDto
+                return new FormActionResultDto
                 {
                     IsSuccess = true,
                     Message = $"Cash withdrawal for amount {amount} completed successfully."

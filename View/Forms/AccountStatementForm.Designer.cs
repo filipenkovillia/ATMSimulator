@@ -40,13 +40,13 @@
             // lbCancel
             // 
             this.lbCancel.AutoSize = true;
-            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCancel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbCancel.Location = new System.Drawing.Point(440, 385);
+            this.lbCancel.Location = new System.Drawing.Point(494, 395);
             this.lbCancel.Name = "lbCancel";
-            this.lbCancel.Size = new System.Drawing.Size(106, 41);
+            this.lbCancel.Size = new System.Drawing.Size(52, 28);
             this.lbCancel.TabIndex = 18;
-            this.lbCancel.Text = "Cancel";
+            this.lbCancel.Text = "Back";
             this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
             // 
             // btnReceipt
@@ -123,7 +123,7 @@
             this.Controls.Add(this.btnReceipt);
             this.Controls.Add(this.lbCancel);
             this.Name = "AccountStatementForm";
-            this.Text = "AccountStatementForm";
+            this.Text = "Account Statement";
             this.Load += new System.EventHandler(this.AccountStatementForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewTransactions)).EndInit();
             this.ResumeLayout(false);

@@ -1,5 +1,7 @@
 ﻿using ATMSimulator.Model.AppDbContext;
+using ATMSimulator.Model.DTO;
 using ATMSimulator.Model.Entities;
+using System.Text;
 
 namespace ATMSimulator.Controller
 {
@@ -12,10 +14,11 @@ namespace ATMSimulator.Controller
             _dbContext = DbContextProvider.GetDbContext();
         }
 
-        public bool TrySignUp(string firstName, string lastName, string phoneNumber)
+        public FormActionResultDto SignUp(string firstName, string lastName, string phoneNumber)
         {
-            // TODO: return generated card number and PIN
-            if (ValidateInputData(firstName, lastName, phoneNumber))
+            var validationStringBuilder = ValidateInputData(firstName, lastName, phoneNumber);
+
+            if (validationStringBuilder.Length == 0)
             {
                 var customer = CreateNewCustomer(firstName, lastName, phoneNumber);
                 var card = CreateNewCard(customer);
@@ -27,18 +30,63 @@ namespace ATMSimulator.Controller
                 _dbContext.Cards.Add(card);
                 _dbContext.SaveChanges();
 
-                return true;
+                var result = new FormActionResultDto
+                {
+                    IsSuccess = true,
+                    Message = $"Card Number: {card.Number}\n" +
+                              $"PIN: {card.PIN}"
+                };
+
+                return result;
             }
             else
             {
-                return false;
+                var result = new FormActionResultDto
+                {
+                    IsSuccess = false,
+                    Message = validationStringBuilder.ToString()
+                };
+
+                return result;
             }
         }
 
-        private bool ValidateInputData(string firstName, string lastName, string phoneNumber)
+        private StringBuilder ValidateInputData(string firstName, string lastName, string phoneNumber)
         {
-            // TODO: validation
-            return true;
+            var sb = new StringBuilder();
+
+            if (string.IsNullOrWhiteSpace(firstName))
+            {
+                sb.AppendLine("First name cannot be empty.");
+            }
+            if (string.IsNullOrWhiteSpace(lastName))
+            {
+                sb.AppendLine("Last name cannot be empty.");
+            }
+            if (string.IsNullOrWhiteSpace(phoneNumber))
+            {
+                sb.AppendLine("Phone cannot be empty.");
+            }
+
+            var customerExists = _dbContext.Customers
+                .Any(x => x.FirstName == firstName 
+                       && x.LastName == lastName);
+
+            if (customerExists)
+            {
+                sb.AppendLine($"Customer with First Name = {firstName} and " +
+                    $"Last Name = {lastName} already exists.");
+            }
+
+            var phoneNumberExists = _dbContext.Customers
+                .Any(x => x.PhoneNumber == phoneNumber);
+
+            if (phoneNumberExists)
+            {
+                sb.AppendLine($"Phone number {phoneNumber} has already been registered.");
+            }
+
+            return sb;
         }
 
         private Customer CreateNewCustomer(string firstName, string lastName, string phoneNumber)
@@ -68,7 +116,10 @@ namespace ATMSimulator.Controller
 
         private string GenerateCardNumber()
         {
-            var lastAccount = _dbContext.Cards.OrderBy(x => x.CreatedAt).LastOrDefault();
+            var lastAccount = _dbContext.Cards
+                .OrderBy(x => x.CreatedAt)
+                .LastOrDefault();
+
             if (lastAccount != null)
             {
                 var accountNumber = Convert.ToInt32(lastAccount.Number);
@@ -82,7 +133,10 @@ namespace ATMSimulator.Controller
 
         private string GenerateCardPIN()
         {
-            var lastAccount = _dbContext.Cards.OrderBy(x => x.CreatedAt).LastOrDefault();
+            var lastAccount = _dbContext.Cards
+                .OrderBy(x => x.CreatedAt)
+                .LastOrDefault();
+            
             if (lastAccount != null)
             {
                 var accountNumber = Convert.ToInt32(lastAccount.Number);

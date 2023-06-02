@@ -6,7 +6,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 {
     public class PDFStatementExporter : AccountStatementExporter
     {
-        protected override void SaveToFile(List<TransactionDTO> transactions)
+        protected override void SaveToFile(List<TransactionDto> transactions)
         {
             Document document = new Document();
 

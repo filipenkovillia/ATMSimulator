@@ -17,7 +17,7 @@ namespace ATMSimulator.View.Forms
         {
             decimal accountBalance = _balanceInquiryController.GetCardBalance();
 
-            lbBalance.Text = $"Account Balance: ${accountBalance}";
+            lbBalance.Text = $"Card Balance: ${accountBalance}";
         }
 
         private void lbBack_Click(object sender, EventArgs e)

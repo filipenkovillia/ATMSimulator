@@ -27,11 +27,19 @@ namespace ATMSimulator.View.Forms
 
             dataGridViewTransactions.AutoGenerateColumns = false;
 
+            dataGridViewTransactions.Columns.Add("SenderCardNumber", "Sender Card Number");
+            dataGridViewTransactions.Columns.Add("ReceiverCardNumber", "Receiver Card Number");
             dataGridViewTransactions.Columns.Add("TransactionDate", "Transaction Date");
             dataGridViewTransactions.Columns.Add("Amount", "Amount");
+            dataGridViewTransactions.Columns.Add("TransactionType", "Transaction Type");
+            dataGridViewTransactions.Columns.Add("Status", "Status");
 
+            dataGridViewTransactions.Columns["SenderCardNumber"].DataPropertyName = "SenderCardNumber";
+            dataGridViewTransactions.Columns["ReceiverCardNumber"].DataPropertyName = "ReceiverCardNumber";
             dataGridViewTransactions.Columns["TransactionDate"].DataPropertyName = "TransactionDate";
             dataGridViewTransactions.Columns["Amount"].DataPropertyName = "Amount";
+            dataGridViewTransactions.Columns["TransactionType"].DataPropertyName = "TransactionType";
+            dataGridViewTransactions.Columns["Status"].DataPropertyName = "Status";
 
             dataGridViewTransactions.DataSource = accountStatement;
         }

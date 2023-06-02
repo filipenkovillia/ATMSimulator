@@ -54,8 +54,10 @@
             this.tbPIN.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.tbPIN.Location = new System.Drawing.Point(328, 182);
             this.tbPIN.Name = "tbPIN";
+            this.tbPIN.PasswordChar = '*';
             this.tbPIN.Size = new System.Drawing.Size(320, 38);
             this.tbPIN.TabIndex = 7;
+            this.tbPIN.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPIN_KeyPress);
             // 
             // tbCardNumber
             // 
@@ -64,6 +66,7 @@
             this.tbCardNumber.Name = "tbCardNumber";
             this.tbCardNumber.Size = new System.Drawing.Size(320, 38);
             this.tbCardNumber.TabIndex = 8;
+            this.tbCardNumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCardNumber_KeyPress);
             // 
             // label4
             // 
@@ -92,7 +95,7 @@
             this.lbSignUp.AutoSize = true;
             this.lbSignUp.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbSignUp.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbSignUp.Location = new System.Drawing.Point(441, 317);
+            this.lbSignUp.Location = new System.Drawing.Point(447, 306);
             this.lbSignUp.Name = "lbSignUp";
             this.lbSignUp.Size = new System.Drawing.Size(87, 28);
             this.lbSignUp.TabIndex = 6;
@@ -111,7 +114,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbSignUp);
             this.Name = "LoginForm";
-            this.Text = "LoginForm";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

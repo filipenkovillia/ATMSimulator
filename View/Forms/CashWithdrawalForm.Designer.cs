@@ -58,15 +58,16 @@
             this.tbAmount.Name = "tbAmount";
             this.tbAmount.Size = new System.Drawing.Size(236, 38);
             this.tbAmount.TabIndex = 14;
+            this.tbAmount.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbAmount_KeyPress);
             // 
             // lbCancel
             // 
             this.lbCancel.AutoSize = true;
-            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lbCancel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lbCancel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.lbCancel.Location = new System.Drawing.Point(199, 273);
+            this.lbCancel.Location = new System.Drawing.Point(224, 273);
             this.lbCancel.Name = "lbCancel";
-            this.lbCancel.Size = new System.Drawing.Size(106, 41);
+            this.lbCancel.Size = new System.Drawing.Size(69, 28);
             this.lbCancel.TabIndex = 15;
             this.lbCancel.Text = "Cancel";
             this.lbCancel.Click += new System.EventHandler(this.lbCancel_Click);
@@ -148,7 +149,7 @@
             this.Controls.Add(this.btnFast10);
             this.Controls.Add(this.btnWithdraw);
             this.Name = "CashWithdrawalForm";
-            this.Text = "CashWithdrawalForm";
+            this.Text = "Cash Withdrawal";
             this.ResumeLayout(false);
             this.PerformLayout();
 

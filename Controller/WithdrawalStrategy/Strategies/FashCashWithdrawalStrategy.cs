@@ -11,11 +11,11 @@ namespace ATMSimulator.Controller.WithdrawalStrategy.Strategies
             return decimal.Parse(arr[0]);
         }
 
-        public WithdrawResultDto Withdraw(CashWithdrawalController controller, decimal amount)
+        public FormActionResultDto Withdraw(CashWithdrawalController controller, decimal amount)
         {
             controller.WithdrawCash(amount);
 
-            return new WithdrawResultDto
+            return new FormActionResultDto
             {
                 IsSuccess = true,
                 Message = $"Cash withdrawal for amount {amount} completed successfully."

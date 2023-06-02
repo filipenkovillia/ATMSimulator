@@ -4,7 +4,7 @@ namespace ATMSimulator.Controller.AccountStatementExporter
 {
     public class CSVStatementExporter : AccountStatementExporter
     {
-        protected override void SaveToFile(List<TransactionDTO> transactions)
+        protected override void SaveToFile(List<TransactionDto> transactions)
         {
             using (StreamWriter writer = new StreamWriter("output.csv"))
             {

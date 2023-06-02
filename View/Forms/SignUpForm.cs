@@ -1,13 +1,4 @@
 ﻿using ATMSimulator.Controller;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace ATMSimulator.View.Forms
 {
@@ -27,20 +18,24 @@ namespace ATMSimulator.View.Forms
             string lastName = tbLastName.Text;
             string phoneNumber = tbPhoneNumber.Text;
 
-            bool signUpSuccessful = _signUpController.TrySignUp(firstName, lastName, phoneNumber);
+            var signUpResult = _signUpController.SignUp(firstName, lastName, phoneNumber);
 
-            if (signUpSuccessful)
+            if (signUpResult.IsSuccess)
             {
-                MessageBox.Show("Sign-up successful!");
+                MessageBox.Show($"Sign-up successful!\n{signUpResult.Message}");
+
+                tbFirstName.Text = string.Empty;
+                tbLastName.Text = string.Empty;
+                tbPhoneNumber.Text = string.Empty;
+
+                LoginForm loginForm = new LoginForm();
+                loginForm.Show();
+                this.Close();
             }
             else
             {
-                MessageBox.Show("Failed to sign up. Please try again.");
+                MessageBox.Show($"Failed to sign up. Please try again.\n{signUpResult.Message}");
             }
-
-            tbFirstName.Text = string.Empty;
-            tbLastName.Text = string.Empty;
-            tbPhoneNumber.Text = string.Empty;
         }
 
         private void lbCancel_Click(object sender, EventArgs e)
@@ -48,6 +43,14 @@ namespace ATMSimulator.View.Forms
             LoginForm loginForm = new LoginForm();
             loginForm.Show();
             this.Close();
+        }
+
+        private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
